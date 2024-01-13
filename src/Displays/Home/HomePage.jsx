@@ -1,5 +1,6 @@
 import '../../Styles/App.css'
 import Header from "../../Components/Header/header.jsx";
+import Footer from "../../Components/Footer/footer.jsx";
 
 
 function HomePage() {
@@ -7,6 +8,7 @@ function HomePage() {
         <>
             <Header />
             <p>Home page</p>
+            <Footer />
         </>
     )
 }
