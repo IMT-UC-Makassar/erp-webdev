@@ -3,15 +3,15 @@ import Header from "../../Components/Header/header.jsx";
 import Footer from "../../Components/Footer/footer.jsx";
 import Menu from "../../Components/HamburgerMenu/menu.jsx"
 
-function MeetingList(){
+function Finance() {
     return(
         <>
             <Header />
             <Menu/>
-            <p>Meeting List</p>
+            <p>Finance</p>
             <Footer />
         </>
     )
 }
 
-export default MeetingList
+export default Finance;
