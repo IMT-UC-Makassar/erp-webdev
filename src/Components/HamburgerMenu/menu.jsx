@@ -5,6 +5,7 @@ const Menu = () => {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const menuRef = useRef(null);
 
+
     const toggleMenu = () => {
         setMenuOpen(!isMenuOpen);
     };
