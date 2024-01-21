@@ -1,6 +1,6 @@
 import axios from 'axios';
-import {useAuth} from "../auth/authContext.jsx";
 import {useNavigate} from "react-router-dom";
+import {useAuth} from "./authContext.jsx";
 
 const navigate = useNavigate();
 
@@ -31,7 +31,6 @@ instance.interceptors.response.use(
     }
 );
 
-// Usage in components:
 const data = await instance.get('/protected-data');
 
 export default instance;
