@@ -1,8 +1,9 @@
 import "../../Styles/App.css";
 import React, { useState } from "react";
-import Meetinglogo from "../../assets/meeting-logo.png";
+import Meetinglogo from "../../assets/logo-meeting.png";
 
 function AddNewMeeting() {
+
   const [namaMeeting, setNamaMeeting] = useState("");
   const [tujuanMeeting, setTujuanMeeting] = useState("");
   const [selectedYearMulai, setSelectedYearMulai] = useState("Year");
@@ -30,33 +31,45 @@ function AddNewMeeting() {
     backgroundColor: "#009FBC",
   };
 
+  const timestampMulai = new Date(
+      selectedYearMulai,
+      selectedMonthMulai - 1,
+      selectedDayMulai,
+      selectedHourMulai,
+      selectedMinuteMulai,
+  );
+
+  const timestampStringMulaiWithOffset = timestampMulai + '.000+00:00';
+
+  const timestampAkhir = new Date(
+    selectedYearAkhir,
+    selectedMonthAkhir - 1,
+    selectedDayAkhir,
+    selectedHourAkhir,
+    selectedMinuteAkhir,
+);
+
+const timestampStringAkhirWithOffset = timestampAkhir + '.000+00:00';
+
+
   const [formData] = useState({
     namaMeeting,
     tujuanMeeting,
-    selectedYearMulai,
-    selectedYearAkhir,
-    selectedMonthMulai,
-    selectedMonthAkhir,
-    selectedDayMulai,
-    selectedDayAkhir,
-    selectedHourMulai,
-    selectedHourAkhir,
-    selectedMinuteMulai,
-    selectedMinuteAkhir,
+    timestampMulai,
+    timestampAkhir,
     lokasiMeeting,
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5173/meetinglist?", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    }).then(() => {
-      console.log("new meeting added");
-    });
-  };
+    // axiosInstance.post( "http://localhost:8888/api/v1/meetings")
+    // .then((response) => {
+    //     //apa kalau berhasil
+    // }).catch(() => {
+    //     //apa kalau gagal
+    // });
+};
 
   const handleSelectChange = (setter) => (event) => {
     setter(event.target.value);
