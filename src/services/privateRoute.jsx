@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../services/axiosInstance';
 import {useAuth} from "./authContext.jsx";
+import createAxiosInstance from "../services/axiosInstance";
 
 function PrivateRoute({ children }) {
     const { isAuthenticated, login } = useAuth();
@@ -11,10 +11,12 @@ function PrivateRoute({ children }) {
         if (!isAuthenticated) {
             const token = localStorage.getItem('token');
             if (token) {
-                    axiosInstance.get('http://localhost:8888/api/v1/auth')
-                        .then(response => {
+                console.log(token);
+                const axiosInstance = createAxiosInstance(isAuthenticated);
+                    axiosInstance.get('/auth')
+                        .then(() => {
                             login(token);
-                        }).catch(error => {
+                        }).catch(() => {
                         navigate('/');
                     });
 
