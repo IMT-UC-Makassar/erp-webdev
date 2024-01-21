@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from './AuthContext';
 import createAxiosInstance from "./axiosInstance.jsx";
+import {useAuth} from "./authContext.jsx";
 
 function PublicRoute({ children }) {
     const { isAuthenticated, login } = useAuth();
