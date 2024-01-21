@@ -1,12 +1,13 @@
 import logo from '/src/assets/logo-CE.jpg'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import logoutIcon from "../../assets/logout-icon.png"
+import {useAuth} from "../../services/authContext.jsx";
 import LogoutConfirmation from "../LogoutConfirmation/logoutConfirmation.jsx";
 import {useState} from "react";
-// ... (your imports and other code)
 
 const Header = () => {
-
+    const { logout } = useAuth();
+    const navigate = useNavigate();
     const [isLogoutConfirmationOpen, setIsLogoutConfirmationOpen] = useState(false);
 
     const openLogoutConfirmation = () => {
@@ -22,6 +23,10 @@ const Header = () => {
         // Add your logout logic here
         // For now, let's just close the confirmation dialog
         closeLogoutConfirmation();
+        if(isLogoutConfirmationOpen){
+          logout();
+          navigate('/');
+        }
     };
 
     return (
