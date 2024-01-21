@@ -2,10 +2,9 @@ import '../../Styles/App.css'
 import {useState} from "react";
 import { Link , useNavigate} from 'react-router-dom';
 import { useAuth } from "../../services/authContext.jsx";
-import createAxiosInstance from "../../services/axiosInstance";
 import logoCE from "../../assets/logo-CE.jpg"
 function Login() {
-    const { isAuthenticated, login } = useAuth();
+    const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -34,21 +33,12 @@ function Login() {
                 const data = await response.json();
                 console.log('Received Token:', data.token);
                 login(data.token);
-                const axiosInstance = createAxiosInstance(isAuthenticated);
+                console.log('Authenticated request successful:', response.data);
+                navigate('/home')
 
                 // Use the Axios instance with the authentication token
 
                 // Example: Make a GET request
-                axiosInstance.get('/auth')
-                    .then((response) => {
-                        // Handle success
-                        console.log('Authenticated request successful:', response.data);
-                        navigate('/home')
-                    })
-                    .catch((error) => {
-                        // Handle failure
-                        console.error('Authenticated request failed:', error);
-                    });
             } else {
                 // Authentication failed, handle the error
             }

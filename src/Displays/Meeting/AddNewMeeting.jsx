@@ -6,7 +6,6 @@ import createAxiosInstance from "../../services/axiosInstance.jsx";
 
 function AddNewMeeting() {
   const { isAuthenticated } = useAuth();
-
   const [namaMeeting, setNamaMeeting] = useState("");
   const [tujuanMeeting, setTujuanMeeting] = useState("");
   const [selectedYearMulai, setSelectedYearMulai] = useState("Year");
@@ -81,8 +80,8 @@ const timestampStringAkhirWithOffset = timestampAkhir + '.000+00:00';
   };
 
   return (
-    <div>
-      <div style={titlestylecolor} className="h-12 w-[1234px] rounded-t-lg ">
+    <div className="justify-center flex flex-col w-full items-center ">
+      <div style={titlestylecolor} className="flex h-12 w-[1234px] rounded-t-lg ">
         <div className="flex flex-row ">
           <div className="w-19 h-fit ml-7 flex">
             <img
