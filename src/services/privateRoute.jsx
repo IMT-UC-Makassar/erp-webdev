@@ -12,7 +12,7 @@ function PrivateRoute({ children }) {
             const token = localStorage.getItem('token');
             if (token) {
                 console.log(token);
-                const axiosInstance = createAxiosInstance(isAuthenticated);
+                const axiosInstance = createAxiosInstance(true);
                     axiosInstance.get('/auth')
                         .then(() => {
                             login(token);
