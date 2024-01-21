@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import {Link} from "react-router-dom";
 
-const Menu = () => {
+const Menu = ({className}) => {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const menuRef = useRef(null);
 

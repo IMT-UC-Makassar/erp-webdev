@@ -3,9 +3,9 @@ import {Link} from "react-router-dom";
 import logoutIcon from "../../assets/logout-icon.png"
 
 
-const Header = () => {
+const Header = ({className}) => {
     return(
-        <div id="header" className="flex flex-row h-16 w-full bg-sky-200 px-10 content-end select-none">
+        <div id="header" className={`flex flex-row ${className} w-full bg-sky-200 px-10 content-end select-none`}>
             <div className="w-1/2 flex">
                 <div className=" flex flex-row items-center">
                     <Link to="/home" className="flex">
