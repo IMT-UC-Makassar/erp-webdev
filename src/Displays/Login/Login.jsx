@@ -3,6 +3,7 @@ import {useState} from "react";
 import { Link , useNavigate} from 'react-router-dom';
 import { useAuth } from "../../services/authContext.jsx";
 import createAxiosInstance from "../../services/axiosInstance";
+import logoCE from "../../assets/logo-CE.jpg"
 function Login() {
     const { isAuthenticated, login } = useAuth();
     const [email, setEmail] = useState("");
@@ -63,19 +64,13 @@ function Login() {
         <div id="terluar" >
 
             <div id="bg-login" className=" justify-center flex w-full h-full">
-                <div id="img-login" className="w-full h-full absolute">
-                    <div id="logo" className="flex flex-row justify-start absolute">
-                        <img src="../../assets/react.svg" alt="" className="w-16 bg-orange-300  h-9 ml-8 mt-5"/>
-                        <img src="../../assets/react.svg" alt="" className="w-full bg-orange-300  h-9 mt-5"/>
-                    </div>
-                </div>
                 <div id="login-box"
                      className="flex flex-col justify-center items-center w-1/4 mt-32 mb-16 h-fit bg-orange-300 rounded-l relative">
                     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                             <img
-                                className="mx-auto h-10 w-auto"
-                                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                                className="mx-auto h-16 rounded-full w-auto"
+                                src={logoCE}
                                 alt="Your Company"
                             />
                             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
