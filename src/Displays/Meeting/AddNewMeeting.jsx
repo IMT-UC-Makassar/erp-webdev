@@ -1,8 +1,11 @@
 import "../../Styles/App.css";
 import React, { useState } from "react";
 import Meetinglogo from "../../assets/logo-meeting.png";
+import {useAuth} from "../../services/authContext.jsx";
+import createAxiosInstance from "../../services/axiosInstance.jsx";
 
 function AddNewMeeting() {
+  const { isAuthenticated } = useAuth();
 
   const [namaMeeting, setNamaMeeting] = useState("");
   const [tujuanMeeting, setTujuanMeeting] = useState("");
@@ -52,23 +55,25 @@ function AddNewMeeting() {
 const timestampStringAkhirWithOffset = timestampAkhir + '.000+00:00';
 
 
-  const [formData] = useState({
-    namaMeeting,
-    tujuanMeeting,
-    timestampMulai,
-    timestampAkhir,
-    lokasiMeeting,
-  });
-
+  const formData = {
+    topic: namaMeeting,
+    purpose: tujuanMeeting,
+    timeStart: timestampMulai,
+    timeEnd: timestampAkhir,
+    location: lokasiMeeting,
+  };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formData);
+    const axiosInstance = createAxiosInstance(isAuthenticated);
 
-    // axiosInstance.post( "http://localhost:8888/api/v1/meetings")
-    // .then((response) => {
-    //     //apa kalau berhasil
-    // }).catch(() => {
-    //     //apa kalau gagal
-    // });
+    axiosInstance.post( "/meetings", formData)
+    .then((response) => {
+      console.log(response);
+    }).catch((e) => {
+        console.log(e);
+    });
 };
 
   const handleSelectChange = (setter) => (event) => {
