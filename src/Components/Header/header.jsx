@@ -1,13 +1,16 @@
 import logo from '/src/assets/logo-CE.jpg'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import logoutIcon from "../../assets/logout-icon.png"
 import {useAuth} from "../../services/authContext.jsx";
 
 
 function Header() {
     const { logout } = useAuth();
+    const navigate = useNavigate();
+
     const handleLogout = () => {
         logout();
+        navigate('/');
     }
 
     return(
