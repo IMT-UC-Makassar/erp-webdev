@@ -1,26 +1,61 @@
 import '../../Styles/App.css'
 import {useState} from "react";
-import { Link } from 'react-router-dom';
-
+import { Link , useNavigate} from 'react-router-dom';
+import { useAuth } from "../../services/authContext.jsx";
+import createAxiosInstance from "../../services/axiosInstance";
 function Login() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const { isAuthenticated, login } = useAuth();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
-    const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
     };
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
     };
 
-    const handleSubmit = (event) => {
+    const handleLogin = async (event) => {
         event.preventDefault();
-        console.log('Username submitted:', username);
-        console.log('Password submitted:', password);
-        // Lakukan sesuatu dengan nilai username dan password, seperti mengirim ke server, dll.
 
+        try {
+            const response = await fetch('http://localhost:8888/api/v1/auth/authenticate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Received Token:', data.token);
+                login(data.token);
+                const axiosInstance = createAxiosInstance(isAuthenticated);
+
+                // Use the Axios instance with the authentication token
+
+                // Example: Make a GET request
+                axiosInstance.get('/auth')
+                    .then((response) => {
+                        // Handle success
+                        console.log('Authenticated request successful:', response.data);
+                        navigate('/home')
+                    })
+                    .catch((error) => {
+                        // Handle failure
+                        console.error('Authenticated request failed:', error);
+                    });
+            } else {
+                // Authentication failed, handle the error
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+        }
     };
+
     return(
         <>
 
@@ -60,7 +95,9 @@ function Login() {
                                             id="email"
                                             name="email"
                                             type="email"
+                                            value={email}
                                             autoComplete="email"
+                                            onChange={handleEmailChange}
                                             required
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                         />
@@ -80,6 +117,8 @@ function Login() {
                                             name="password"
                                             type="password"
                                             autoComplete="current-password"
+                                            value={password}
+                                            onChange={handlePasswordChange}
                                             required
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                         />
@@ -91,6 +130,7 @@ function Login() {
                                         <button
                                             type="submit"
                                             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                            onClick={handleLogin}
                                         >
                                             Sign in
                                         </button>
