@@ -1,36 +1,32 @@
 import axios from 'axios';
-import {useNavigate} from "react-router-dom";
-import {useAuth} from "./authContext.jsx";
+import {useNavigate} from 'react-router-dom';
+import {useAuth} from './authContext.jsx';
 
-const navigate = useNavigate();
+const useAxiosInstance = () => {
+    const navigate = useNavigate();
 
-const instance = axios.create({
-    baseURL: 'http://localhost:8888/',
-});
+    const instance = axios.create({
+        baseURL: 'http://localhost:8888/',
+    });
 
-instance.interceptors.request.use(
-    (config) => {
-        const { isAuthenticated } = useAuth();
+    instance.interceptors.request.use((config) => {
+        const {isAuthenticated} = useAuth();
         if (isAuthenticated) {
             const token = localStorage.getItem('token');
             config.headers.Authorization = `Bearer ${token}`;
         }
         return config;
-    },
-    (error) => Promise.reject(error)
-);
+    }, (error) => Promise.reject(error));
 
-instance.interceptors.response.use(
-    (response) => response,
-    (error) => {
+    instance.interceptors.response.use((response) => response, (error) => {
         if (error.response.status === 403) {
             localStorage.removeItem('token');
             navigate('/login');
         }
         return Promise.reject(error);
-    }
-);
+    });
 
-const data = await instance.get('/protected-data');
+    return instance;
+};
 
-export default instance;
+export default useAxiosInstance;
