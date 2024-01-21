@@ -4,7 +4,7 @@ import createAxiosInstance from "./axiosInstance.jsx";
 import {useAuth} from "./authContext.jsx";
 
 function PublicRoute({children}) {
-    const {isAuthenticated, login} = useAuth();
+    const {isAuthenticated, login, logout} = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -18,6 +18,7 @@ function PublicRoute({children}) {
                         login(token);
                         navigate('/home')
                     }).catch(() => {
+                        logout();
                     navigate('/');
                 });
             }
@@ -25,7 +26,7 @@ function PublicRoute({children}) {
         if (isAuthenticated) {
             navigate('/home');
         }
-    }, [isAuthenticated, login, navigate]);
+    }, [isAuthenticated, login, logout, navigate]);
 
     return children;
 }

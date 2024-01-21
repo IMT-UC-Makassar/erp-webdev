@@ -4,7 +4,7 @@ import {useAuth} from "./authContext.jsx";
 import createAxiosInstance from "../services/axiosInstance";
 
 function PrivateRoute({ children }) {
-    const { isAuthenticated, login } = useAuth();
+    const { isAuthenticated, login, logout } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -17,6 +17,7 @@ function PrivateRoute({ children }) {
                         .then(() => {
                             login(token);
                         }).catch(() => {
+                            logout();
                         navigate('/');
                     });
 
@@ -24,7 +25,7 @@ function PrivateRoute({ children }) {
                 navigate('/');
             }
         }
-    }, [isAuthenticated, login, navigate]);
+    }, [isAuthenticated, login, logout, navigate]);
 
     return children;
 }
