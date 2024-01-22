@@ -6,4 +6,5 @@
 
 #bg-login{
     background-image: url("../assets/bg-login.png");
+    background-size: cover;
 }
