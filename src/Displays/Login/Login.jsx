@@ -4,7 +4,7 @@ import {useAuth} from "../../services/authContext.jsx";
 import createAxiosInstance from "../../services/axiosInstance.jsx";
 
 function Login() {
-    const { isAuthenticated, login } = useAuth();
+    const {isAuthenticated, login} = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -15,7 +15,7 @@ function Login() {
             email: username, password: password
         }
         try {
-                const response = await axiosInstance.post('auth/authenticate', data)
+            const response = await axiosInstance.post('auth/authenticate', data)
             if (response && response.data && response.data.token) {
                 const token = response.data.token;
                 login(token);
