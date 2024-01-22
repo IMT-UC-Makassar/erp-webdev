@@ -9,20 +9,23 @@ import Profile from "./Displays/Profile/Profile.jsx";
 import ProjectDetailed from "./Displays/Project/ProjectDetailed.jsx";
 import ProjectList from "./Displays/Project/ProjectList.jsx";
 import Finance from "./Displays/Finance/Finance.jsx";
+import PrivateRoute from "./services/privateRoute.jsx";
+import PublicRoute from "./services/publicRoute.jsx";
 function App() {
   return (
       <Router>
         <Routes>
-          <Route exact path='/' element={<Login/>}/>
-          <Route path='/home' element={<HomePage/>}/>
-          <Route path='/404' element={<NotFoundPage/>}/>
-          <Route path='/inventorylist' element={<InvenroryList/>}/>
-          <Route path='/meetinglist' element={<MeetingList/>}/>
-          <Route path='/meetinglist/meetingdetailed' element={<MeetingDetailed/>}/>
-          <Route path='/profile' element={<Profile/>}/>
-          <Route path='/projectlist' element={<ProjectList/>}/>
-          <Route path='/projectlist/projectDetailed' element={<ProjectDetailed/>}/>
-          <Route path='/finance' element={<Finance/>}/>
+            <Route path="/" element={<PublicRoute><Login/></PublicRoute>}/>
+            <Route path="/404" element={<NotFoundPage/>}/>
+
+            <Route path="/home" element={<PrivateRoute><HomePage/></PrivateRoute>}/>
+            <Route path="/inventorylist" element={<PrivateRoute><InvenroryList/></PrivateRoute>}/>
+            <Route path="/meetinglist" element={<PrivateRoute><MeetingList/></PrivateRoute>}/>
+            <Route path="/meetinglist/meetingdetailed" element={<PrivateRoute><MeetingDetailed/></PrivateRoute>}/>
+            <Route path="/profile" element={<PrivateRoute><Profile/></PrivateRoute>}/>
+            <Route path="/projectlist" element={<PrivateRoute><ProjectList/></PrivateRoute>}/>
+            <Route path="/projectlist/projectdetailed" element={<PrivateRoute><ProjectDetailed/></PrivateRoute>}/>
+            <Route path="/finance" element={<PrivateRoute><Finance/></PrivateRoute>}/>
         </Routes>
       </Router>
 
