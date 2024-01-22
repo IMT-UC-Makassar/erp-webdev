@@ -8,10 +8,11 @@ function PublicRoute({children}) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!isAuthenticated) {
+        if (isAuthenticated) {
+            navigate('/home')
+        } else {
             const token = localStorage.getItem('token');
             if (token) {
-                console.log(token);
                 const axiosInstance = createAxiosInstance(true);
                 axiosInstance.get('/auth')
                     .then(() => {
@@ -19,12 +20,8 @@ function PublicRoute({children}) {
                         navigate('/home')
                     }).catch(() => {
                         logout();
-                    navigate('/');
                 });
             }
-        }
-        if (isAuthenticated) {
-            navigate('/home');
         }
     }, [isAuthenticated, login, logout, navigate]);
 
