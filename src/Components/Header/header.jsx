@@ -5,6 +5,12 @@ import {useAuth} from "../../services/authContext.jsx";
 import LogoutConfirmation from "../LogoutConfirmation/logoutConfirmation.jsx";
 import {useState} from "react";
 
+const bgHeader = {
+    backgroundColor: "#C9C9C9",
+};
+const text  = {
+    backgroundColor: "#C9C9C9",
+};
 const Header = () => {
     const { logout } = useAuth();
     const navigate = useNavigate();
@@ -30,7 +36,11 @@ const Header = () => {
     };
 
     return (
-        <div id="header" className="flex flex-row h-16 w-full bg-sky-200 px-10 content-end select-none">
+        <div
+            id="header"
+            className="flex flex-row h-16 w-full bg-sky-200 px-10 content-end select-none"
+            style={bgHeader}
+        >
             <div className="w-1/2 flex">
                 <div className="flex flex-row items-center">
                     <Link to="/home" className="flex">
@@ -39,7 +49,7 @@ const Header = () => {
                 </div>
                 <Link to="/home" className="flex">
                     <div className="flex flex-col justify-center text-sm ml-4 ">
-                        <strong className="text-blue-600">COORPORATE</strong>
+                        <strong className="" style={text}>COORPORATE</strong>
                         <strong className="text-orange-400">ENTREPRENEURSHIP</strong>
                     </div>
                 </Link>
