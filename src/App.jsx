@@ -9,6 +9,8 @@ import Profile from "./Displays/Profile/Profile.jsx";
 import ProjectDetailed from "./Displays/Project/ProjectDetailed.jsx";
 import ProjectList from "./Displays/Project/ProjectList.jsx";
 import Finance from "./Displays/Finance/Finance.jsx";
+import InputMeeting from "./Displays/Meeting/MeetingInput.jsx";
+
 function App() {
   return (
       <Router>
@@ -19,6 +21,7 @@ function App() {
           <Route path='/inventorylist' element={<InvenroryList/>}/>
           <Route path='/meetinglist' element={<MeetingList/>}/>
           <Route path='/meetinglist/meetingdetailed' element={<MeetingDetailed/>}/>
+          <Route path='/meetinglist/meetinginput' element={<InputMeeting/>}/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/projectlist' element={<ProjectList/>}/>
           <Route path='/projectlist/projectDetailed' element={<ProjectDetailed/>}/>

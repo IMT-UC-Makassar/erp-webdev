@@ -1,3 +1,11 @@
 {
-  "users": []
+  "database": [
+    {
+      "meeting" : [
+        {
+          "id" : "1"
+        }
+      ]
+    }
+  ]
 }

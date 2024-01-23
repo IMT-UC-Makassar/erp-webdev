@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 
 function Table() {
   const [data, setData] = useState([]);
-  const [topik, setTopik] = useState("");
-  const [tujuan, setTujuan] = useState("");
-  const [waktu, setWaktu] = useState("");
-  const [tempat, setTempat] = useState("");
   const [editId, setEditId] = useState(-1);
   const [utopik, usetTopik] = useState("");
   const [utujuan, usetTujuan] = useState("");
@@ -16,31 +13,14 @@ function Table() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/users/")
+      .get("http://localhost:3000/ListMeeting/")
       .then((res) => setData(res.data))
       .catch((er) => console.log(er));
   }, []);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const newId = (data.length + 1).toString(); // Mengonversi ke string
-    axios
-      .post("http://localhost:3000/users/", {
-        id: newId,
-        topik,
-        tujuan,
-        waktu,
-        tempat,
-      })
-      .then((res) => {
-        location.reload();
-      })
-      .catch((er) => console.log(er));
-  };
-
   const handleEdit = (id) => {
     axios
-      .get("http://localhost:3000/users/" + id)
+      .get("http://localhost:3000/ListMeeting/" + id)
       .then((res) => {
         console.log(res.data);
         usetTopik(res.data.topik);
@@ -54,7 +34,7 @@ function Table() {
 
   const handleUpdate = () => {
     axios
-      .put("http://localhost:3000/users/" + editId, {
+      .put("http://localhost:3000/ListMeeting/" + editId, {
         id: editId,
         topik: utopik,
         tujuan: utujuan,
@@ -71,7 +51,7 @@ function Table() {
 
   const handleDelete = (id) => {
     axios
-      .delete("http://localhost:3000/users/" + id)
+      .delete("http://localhost:3000/ListMeeting/" + id)
       .then((res) => {
         location.reload();
       })
@@ -82,34 +62,12 @@ function Table() {
     <div>
       <div className="">
         <div>
+          <button>
+            <Link to="/meetinginput">
+              input meeting
+            </Link>
+          </button>
         </div>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Topik"
-            className="border-black border-2 w-[250px] h-5"
-            onChange={(e) => setTopik(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Tujuan"
-            className="border-black border-2 w-[250px] h-5"
-            onChange={(e) => setTujuan(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Waktu"
-            className="border-black border-2 w-[250px] h-5"
-            onChange={(e) => setWaktu(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Tempat"
-            className="border-black border-2 w-[250px] h-5"
-            onChange={(e) => setTempat(e.target.value)}
-          />
-          <button className="border-black border-2 w-[50px] h-5">add</button>
-        </form>
       </div>
       <table className={"mx-20 w-[1080px]"}>
         <thead className={"text-white bg-blue-700"}>
@@ -154,8 +112,8 @@ function Table() {
         </thead>
         {/* Untuk Body Table */}
         <tbody className={"text-center bg-gray-200 "}>
-          {data.map((users, index) =>
-            users.id === editId ? (
+          {data.map((ListMeeting, index) =>
+            ListMeeting.id === editId ? (
               <tr>
                 <td>
                   <input
@@ -196,20 +154,20 @@ function Table() {
               </tr>
             ) : (
               <tr key={index}>
-                <td>{users.topik}</td>
-                <td>{users.tujuan}</td>
-                <td>{users.waktu}</td>
-                <td>{users.tempat}</td>
+                <td>{ListMeeting.topik}</td>
+                <td>{ListMeeting.tujuan}</td>
+                <td>{ListMeeting.waktu}</td>
+                <td>{ListMeeting.tempat}</td>
                 <td className="">
                   <button
                     className="border border-black"
-                    onClick={() => handleEdit(users.id)}
+                    onClick={() => handleEdit(ListMeeting.id)}
                   >
                     Edit
                   </button>
                   <button
                     className="border border-black"
-                    onClick={() => handleDelete(users.id)}
+                    onClick={() => handleDelete(ListMeeting.id)}
                   >
                     Delete
                   </button>

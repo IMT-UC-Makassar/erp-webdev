@@ -3,10 +3,10 @@ import Header from "../../Components/Header/header.jsx"
 import Footer from "../../Components/Footer/footer.jsx"
 import Menu from "../../Components/HamburgerMenu/menu.jsx"
 import Button from "../../Components/Button/Button.jsx"
-import Table from "../../Components/Table/tableMeeting.jsx"
+import InputMeeting from "../../Components/Input/inputMeeting.jsx"
 
 
-function MeetingList(){
+function MeetingInput(){
     return(
         <>
         <div className='h-screen w-screen'>
@@ -15,10 +15,10 @@ function MeetingList(){
                 <div className='flex justify-center h-[73%]'>
                     <div className=''>
                         <div className='bg-blue-500 flex justify-start rounded-tl-xl rounded-tr-xl '>
-                            <p className='px-2 py-3 text-white'>Meeting List</p>
+                            <p className='px-2 py-3 text-white'>Meeting Input</p>
                         </div>
                         <div className='bg-blue-200 flex justify-start rounded-bl-xl rounded-br-xl h-[545px]'>
-                            <Table></Table>
+                            <InputMeeting></InputMeeting>
                         </div>
                     </div>
                 </div>
@@ -28,4 +28,4 @@ function MeetingList(){
     )
 }
 
-export default MeetingList
+export default MeetingInput
