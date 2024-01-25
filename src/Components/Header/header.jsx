@@ -6,11 +6,9 @@ import LogoutConfirmation from "../LogoutConfirmation/logoutConfirmation.jsx";
 import {useState} from "react";
 
 const bgHeader = {
-    backgroundColor: "#C9C9C9",
+    backgroundColor: "#F0F0F0",
 };
-const text  = {
-    backgroundColor: "#C9C9C9",
-};
+
 const Header = () => {
     const { logout } = useAuth();
     const navigate = useNavigate();
@@ -49,7 +47,7 @@ const Header = () => {
                 </div>
                 <Link to="/home" className="flex">
                     <div className="flex flex-col justify-center text-sm ml-4 ">
-                        <strong className="" style={text}>COORPORATE</strong>
+                        <strong className="text-blue-600">COORPORATE</strong>
                         <strong className="text-orange-400">ENTREPRENEURSHIP</strong>
                     </div>
                 </Link>
