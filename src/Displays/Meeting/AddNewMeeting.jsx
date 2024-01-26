@@ -4,9 +4,8 @@ import Meetinglogo from "../../assets/logo-meeting.png";
 import {useAuth} from "../../services/authContext.jsx";
 import createAxiosInstance from "../../services/axiosInstance.jsx";
 
-function AddNewMeeting() {
+function AddNewMeeting({onClose}) {
   const { isAuthenticated } = useAuth();
-
   const [namaMeeting, setNamaMeeting] = useState("");
   const [tujuanMeeting, setTujuanMeeting] = useState("");
   const [selectedYearMulai, setSelectedYearMulai] = useState("Year");
@@ -60,9 +59,10 @@ const timestampStringAkhirWithOffset = timestampAkhir + '.000+00:00';
     purpose: tujuanMeeting,
     timeStart: timestampMulai,
     timeEnd: timestampAkhir,
+    creator_email: 'andy@example.com',
     location: lokasiMeeting,
   };
-  
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
@@ -71,6 +71,8 @@ const timestampStringAkhirWithOffset = timestampAkhir + '.000+00:00';
     axiosInstance.post( "/meetings", formData)
     .then((response) => {
       console.log(response);
+      setShowSuccessPopup(true);
+      onClose();
     }).catch((e) => {
         console.log(e);
     });
@@ -81,8 +83,8 @@ const timestampStringAkhirWithOffset = timestampAkhir + '.000+00:00';
   };
 
   return (
-    <div>
-      <div style={titlestylecolor} className="h-12 w-[1234px] rounded-t-lg ">
+    <div className="justify-center flex flex-col w-full items-center ">
+      <div style={titlestylecolor} className="flex h-12 w-[1234px] rounded-t-lg ">
         <div className="flex flex-row ">
           <div className="w-19 h-fit ml-7 flex">
             <img
@@ -99,7 +101,7 @@ const timestampStringAkhirWithOffset = timestampAkhir + '.000+00:00';
       </div>
 
       <div style={bgForm} className="flex w-[1234px] rounded-b-lg">
-        <form onSubmit={handleSubmit} className="flex ">
+        <form className="flex ">
           <div className="flex flex-col w-[1234px] pt-4 pl-16 pr-6 pb-14">
             <label className="font-extralight">1. Nama Meeting</label>
             <input
@@ -274,6 +276,7 @@ const timestampStringAkhirWithOffset = timestampAkhir + '.000+00:00';
               <button
                 className="float-right ml-5 text-center pt-2 pb-2 pl-8 pr-8 text-white font-semibold rounded-full"
                 style={bgButtonAdd}
+                onClick={handleSubmit}
               >
                 Add
               </button>
@@ -287,6 +290,11 @@ const timestampStringAkhirWithOffset = timestampAkhir + '.000+00:00';
           </div>
         </form>
       </div>
+      {showSuccessPopup && (
+          <div className="success-popup">
+            <p>Meeting added successfully!</p>
+          </div>
+      )}
     </div>
   );
 }
