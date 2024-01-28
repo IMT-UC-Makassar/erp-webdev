@@ -8,6 +8,7 @@ import meetingIcon from "../../assets/meeting-logo.png";
 import userIcon from "../../assets/user.png";
 import timeIcon from "../../assets/time.png";
 function MeetingList(){
+
     const formatDate = (dateString) => {
         const options = {
             weekday: 'long',
@@ -112,7 +113,7 @@ function MeetingList(){
                     </div>
                 )}
 
-                <div className="flex flex-col w-9/10 h-full m-20">
+                <div className="flex flex-col w-9/10 h-full mx-20">
                     <div className="flex flex-row w-full px-2 py-4 rounded-t-3xl"
                          style={headerList}
                     >
@@ -127,27 +128,27 @@ function MeetingList(){
                             <p className="text-white">Meeting</p>
                         </div>
                     </div>
-                    <div className="flex flex-col h-full px-7 rounded-b-3xl "
+                    <div className="flex flex-col h-full px-7 rounded-b-3xl mb-20"
                          style={{...bgList, ...boxShadow}}
                     >
                         {/*meeting dump data*/}
-                        {meetingData.slice(0, 5).map((meeting, index) => (
+                        {meetingData.slice(0, 100).map((meeting, index) => (
                             <div id={`meeting-list-home-${index}`}
                                  className="flex flex-row justify-between w-full p-5 items-center border-b-2 border-black"
                                  key={index}
                             >
                                 <div className="flex flex-col">
-                                    <div className="text-xl py-1">
+                                    <strong className="text-xl py-1">
                                         {meeting.topic}
-                                    </div>
+                                    </strong>
                                     <div className="flex w-full flex-row py-1">
                                         <div className="flex w-5 mr-3">
                                             <img src={userIcon} alt="" className="mr-3"/>
                                         </div>
                                         <div>
-                                            <p className="text-sm">
-
-                                            </p>
+                                            {meeting.creator && (
+                                                <p className="text-sm">{meeting.creator.email}</p>
+                                            )}
                                         </div>
                                     </div>
                                     <div className="flex w-full flex-row py-1">

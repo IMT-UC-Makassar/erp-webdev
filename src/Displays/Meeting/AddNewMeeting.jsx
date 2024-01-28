@@ -8,6 +8,7 @@ function AddNewMeeting({onClose}) {
   const { isAuthenticated } = useAuth();
   const [namaMeeting, setNamaMeeting] = useState("");
   const [tujuanMeeting, setTujuanMeeting] = useState("");
+  const [showErrorPopup, setShowErrorPopup] = useState(false);
   const [selectedYearMulai, setSelectedYearMulai] = useState("Year");
   const [selectedYearAkhir, setSelectedYearAkhir] = useState("Year");
   const [selectedMonthMulai, setSelectedMonthMulai] = useState("Month");
@@ -53,18 +54,47 @@ function AddNewMeeting({onClose}) {
 
 const timestampStringAkhirWithOffset = timestampAkhir + '.000+00:00';
 
+  const userData = {
+    email : localStorage.getItem('user.email'),
+    name : localStorage.getItem('user.name'),
+    department : localStorage.getItem('user.department'),
+    position : localStorage.getItem('user.position')
+  }
 
   const formData = {
     topic: namaMeeting,
     purpose: tujuanMeeting,
     timeStart: timestampMulai,
     timeEnd: timestampAkhir,
-    creator_email: 'andy@example.com',
+    creator: userData,
     location: lokasiMeeting,
   };
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (
+        !namaMeeting ||
+        !tujuanMeeting ||
+        selectedYearMulai === "Year" ||
+        selectedYearAkhir === "Year" ||
+        selectedMonthMulai === "Month" ||
+        selectedMonthAkhir === "Month" ||
+        selectedDayMulai === "Day" ||
+        selectedDayAkhir === "Day" ||
+        selectedHourMulai === "Hour" ||
+        selectedHourAkhir === "Hour" ||
+        selectedMinuteMulai === "Minute" ||
+        selectedMinuteAkhir === "Minute" ||
+        !lokasiMeeting
+    ) {
+      setShowErrorPopup(true);
+      setTimeout(() => {
+        setShowErrorPopup(false);
+      }, 3000);
+      return; // Don't proceed with form submission
+    }
+
     console.log(formData);
     const axiosInstance = createAxiosInstance(isAuthenticated);
 
@@ -280,6 +310,7 @@ const timestampStringAkhirWithOffset = timestampAkhir + '.000+00:00';
               >
                 Add
               </button>
+
               <button
                 className="float-right text-center pt-2 pb-2 pl-8 pr-8 text-white font-semibold rounded-full"
                 style={titlestylecolor}
@@ -287,9 +318,15 @@ const timestampStringAkhirWithOffset = timestampAkhir + '.000+00:00';
                 Cancel
               </button>
             </div>
+            {showErrorPopup && (
+                <div className="error-popup">
+                  <p className="text-red-600"> !! Please fill in all required fields. !! </p>
+                </div>
+            )}
           </div>
         </form>
       </div>
+
       {showSuccessPopup && (
           <div className="success-popup">
             <p>Meeting added successfully!</p>

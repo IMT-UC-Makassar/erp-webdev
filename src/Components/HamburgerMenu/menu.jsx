@@ -66,7 +66,7 @@ const Menu = () => {
                     className="fixed top-0 left-0 w-full h-full bg-gray-800 opacity-50"
                     onClick={toggleMenu}
                 ></div>
-                <div className="absolute top-0 left-0 mt-9 bg-sky-200 border border-gray-200 rounded-md shadow-lg w-72 p-4 ">
+                <div className="absolute top-0 left-0 mt-9 bg-orange-200 border border-gray-200 rounded-md shadow-lg w-72 p-4 ">
                     <div className="flex flex-row">
                         <div className="flex w-1/2">
                             <strong className="ml-5">Main Menu</strong>

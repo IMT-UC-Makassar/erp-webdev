@@ -229,9 +229,9 @@ function HomePage() {
                                             <img src={userIcon} alt="" className="mr-3"/>
                                         </div>
                                         <div>
-                                            <p className="text-sm">
-
-                                            </p>
+                                            {meeting.creator && (
+                                                <p className="text-sm">{meeting.creator.email}</p>
+                                            )}
                                         </div>
                                     </div>
                                     <div className="flex w-full flex-row py-1">
