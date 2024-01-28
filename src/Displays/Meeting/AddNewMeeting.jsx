@@ -28,7 +28,7 @@ function AddNewMeeting({onClose}) {
     backgroundColor: "#C9C9C9",
   };
   const bgInput = {
-    backgroundColor: "#D9D9D9",
+    backgroundColor: "#F6F4F4",
   };
   const bgButtonAdd = {
     backgroundColor: "#009FBC",
@@ -122,7 +122,7 @@ const timestampStringAkhirWithOffset = timestampAkhir + '.000+00:00';
               alt="MeetingLogo"
               className="w-6 h-fit pt-3"
             />
-            <h1 className="ml-5 flex pt-3 text-white font-semibold text-[18px]">
+            <h1 className="ml-5 flex pt-3  font-semibold text-[18px]">
               New Meeting
             </h1>
           </div>
@@ -130,24 +130,24 @@ const timestampStringAkhirWithOffset = timestampAkhir + '.000+00:00';
         <div></div>
       </div>
 
-      <div style={bgForm} className="flex w-[1234px] rounded-b-lg">
+      <div className="flex w-[1234px] rounded-b-lg bg-white">
         <form className="flex ">
           <div className="flex flex-col w-[1234px] pt-4 pl-16 pr-6 pb-14">
-            <label className="font-extralight">1. Nama Meeting</label>
+            <label className="font-extralight">1. Meeting Name</label>
             <input
               type="text"
-              style={bgInput}
-              className="m-3"
+              className="m-3 shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={namaMeeting}
               onChange={(e) => setNamaMeeting(e.target.value)}
+              placeholder="Enter Topic"
             />
-            <label className="font-extralight">2. Tujuan Meeting</label>
+            <label className="font-extralight">2. Meeting Purpose</label>
             <input
               type="text"
-              style={bgInput}
-              className="m-3"
+              className="m-3 shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={tujuanMeeting}
               onChange={(e) => setTujuanMeeting(e.target.value)}
+              placeholder="Enter Purpose"
             />
             <label className="font-extralight">3. Waktu Mulai Meeting</label>
             <div className="p-3">
@@ -294,13 +294,13 @@ const timestampStringAkhirWithOffset = timestampAkhir + '.000+00:00';
                 ))}
               </select>
             </div>
-            <label className="font-extralight">5. Tempat Meeting</label>
+            <label className="font-extralight">5. Meeting Location</label>
             <input
               type="text"
-              style={bgInput}
-              className="m-3"
+              className="m-3 shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={lokasiMeeting}
               onChange={(e) => setLokasiMeeting(e.target.value)}
+              placeholder="Enter Location"
             />
             <div className="mt-7 mr-5">
               <button
@@ -312,7 +312,7 @@ const timestampStringAkhirWithOffset = timestampAkhir + '.000+00:00';
               </button>
 
               <button
-                className="float-right text-center pt-2 pb-2 pl-8 pr-8 text-white font-semibold rounded-full"
+                className="float-right text-center pt-2 pb-2 pl-8 pr-8 font-semibold rounded-full"
                 style={titlestylecolor}
               >
                 Cancel
