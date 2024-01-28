@@ -29,7 +29,7 @@ function AddNewProject({ onClose }) {
     backgroundColor: "#C9C9C9",
   };
   const bgInput = {
-    backgroundColor: "#D9D9D9",
+    backgroundColor: "#F6F4F4",
   };
   const bgButtonAdd = {
     backgroundColor: "#009FBC",
@@ -128,7 +128,7 @@ function AddNewProject({ onClose }) {
               alt="Liat Apa Anda"
               className="w-6 h-fit pt-3"
             />
-            <h1 className="ml-5 flex pt-3 text-white font-semibold text-[18px]">
+            <h1 className="ml-5 flex pt-3 font-semibold text-[18px]">
               New Project
             </h1>
           </div>
@@ -136,37 +136,35 @@ function AddNewProject({ onClose }) {
         <div></div>
       </div>
 
-      <div style={bgForm} className="flex w-[1234px] rounded-b-lg">
+      <div className="flex w-[1234px] rounded-b-lg bg-white">
         <form className="flex ">
           <div className="flex flex-col w-[1234px] pt-4 pl-16 pr-6 pb-14">
-            <label className="font-extralight">1. Judul Project</label>
+            <label className="font-extralight">1. Project Title</label>
             <input
               type="text"
-              style={bgInput}
-              className="m-3"
+              className="m-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={titleProject}
+              placeholder="Enter Title"
               onChange={(e) => setTitleProject(e.target.value)}
             />
             <label className="font-extralight">2. Status Project</label>
             <select
               type="text"
-              style={bgInput}
-              className="m-3"
+              className="m-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={statusProject}
               onChange={(e) => setStatusProject(e.target.value)}
             >
-              <option value="">status</option>
+              <option value="">Status</option>
               <option value="onProgress">onProgress</option>
               <option value="done">done</option>
               <option value="cancelled">cancelled</option>
               <option value="onHold">onHold</option>
 
             </select>
-            <label className="font-extralight">3. department</label>
+            <label className="font-extralight">3. Department</label>
             <select
               type="text"
-              style={bgInput}
-              className="m-3"
+              className="m-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={department}
               onChange={(e) => setDepartment(e.target.value)}
             >
@@ -174,7 +172,7 @@ function AddNewProject({ onClose }) {
                 <option value="ICT">ICT</option>
             </select>
 
-            <label className="font-extralight">4. Waktu Mulai Project</label>
+            <label className="font-extralight">4. Project Start</label>
             <div className="p-3">
               <select
                 style={bgInput}
@@ -247,7 +245,7 @@ function AddNewProject({ onClose }) {
               </select>
             </div>
 
-            <label className="font-extralight">5. Waktu Selesai Project</label>
+            <label className="font-extralight">5. Deadline Project</label>
             <div className="p-3">
               <select
                 style={bgInput}
