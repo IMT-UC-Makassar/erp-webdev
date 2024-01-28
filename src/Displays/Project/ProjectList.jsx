@@ -5,8 +5,6 @@ import Menu from "../../Components/HamburgerMenu/menu.jsx"
 import AddNewProject from "./AddNewProject.jsx";
 import {useEffect, useState} from "react";
 import projectIcon from "../../assets/project-logo.png";
-import userIcon from "../../assets/user.png";
-import timeIcon from "../../assets/time.png";
 function ProjectList(){
 
     const [currentPage, setCurrentPage] = useState(1);
