@@ -2,33 +2,26 @@ import '../../Styles/App.css'
 import Header from "../../Components/Header/header.jsx";
 import Footer from "../../Components/Footer/footer.jsx";
 import Menu from "../../Components/HamburgerMenu/menu.jsx"
+import AddNewInventory from "./AddNewInventory.jsx";
 import {useEffect, useState} from "react";
-import AddNewMeeting from "../Meeting/AddNewMeeting.jsx";
-import meetingIcon from "../../assets/meeting-logo.png";
-import userIcon from "../../assets/user.png";
-import timeIcon from "../../assets/time.png";
+import InventoryIcon from "../../assets/inventory-logo.png";
+function InventoryList(){
 
-function InvenroryList(){
-    const formatDate = (dateString) => {
-        const options = {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-        };
-        const formattedDate = new Date(dateString).toLocaleDateString('id-ID', options);
-        return formattedDate;
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5;
+
+    const handleClickNext = () => {
+        setCurrentPage(prevPage => prevPage + 1);
     };
 
-    const formatTime = (dateString) => {
-        const options = {
-            hour: 'numeric',
-            minute: 'numeric',
-        };
-        const formattedTime = new Date(dateString).toLocaleTimeString('id-ID', options);
-        return formattedTime;
+    const handleClickPrev = () => {
+        setCurrentPage(prevPage => Math.max(prevPage - 1, 1));
     };
 
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = currentPage * itemsPerPage;
+
+    const [inventoryData, setInventoryData] = useState([]);
     const bgBigCard = {
         backgroundColor: "#ECEAC6", // Yellow
     };
@@ -41,42 +34,33 @@ function InvenroryList(){
         backgroundColor: "#FFFFFF", // Light Gray
     };
 
-    const bgStatus = {
-        backgroundColor: "#2196F3", // Blue
-    };
-
     const boxShadow = {
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Subtle shadow for depth
     };
 
-    const [meetingData, setMeetingData] = useState([]);
+
+    // Assume you have the authentication token available
+    const authToken = localStorage.getItem('token');
     useEffect(() => {
-
-
         const fetchData = async () => {
-
             try {
-                // Fetch meetings data
-
-                const authToken = localStorage.getItem('token');
-
-                const meetingsResponse = await fetch('http://localhost:8888/api/v1/inventories', {
+                // Fetch inventory data
+                const inventoryResponse = await fetch('http://localhost:8888/api/v1/inventories', {
                     headers: {
                         Authorization: `Bearer ${authToken}`,
                     },
                 });
 
-                // Handle the response for meetings
-                if (meetingsResponse.ok) {
-                    const meetingsData = await meetingsResponse.json();
-                    meetingsData.sort((a, b) => new Date(a.timeStart) - new Date(b.timeStart));
-                    console.log('Meetings data:', meetingsData);
-                    setMeetingData(meetingsData);
+                // Handle the response for inventory
+                if (inventoryResponse.ok) {
+                    const inventoryData = await inventoryResponse.json();
+                    console.log('inventory data:', inventoryData);
+                    setInventoryData(inventoryData);
                 } else {
-                    if (meetingsResponse.status === 403) {
+                    if (inventoryResponse.status === 403) {
                         console.error('Unauthorized: Authentication token is invalid or expired.');
                     } else {
-                        console.error(`Failed to fetch meetings. Status: ${meetingsResponse.status}`);
+                        console.error(`Failed to fetch inventory. Status: ${inventoryResponse.status}`);
                     }
                 }
             } catch (error) {
@@ -88,87 +72,96 @@ function InvenroryList(){
         fetchData();
     }, []); // Empty dependency array means this effect runs once when the component mounts
 
+    const [isAddInventoryModalOpen, setIsAddInventoryModalOpen] = useState(false);
 
-    const [isAddMeetingModalOpen, setIsAddMeetingModalOpen] = useState(false);
-
-    const openAddMeetingModal = () => {
-        setIsAddMeetingModalOpen(true);
+    const openAddInventoryModal = () => {
+        setIsAddInventoryModalOpen(true);
     };
 
-    const closeAddMeetingModal = () => {
-        setIsAddMeetingModalOpen(false);
+    const closeAddInventoryModal = () => {
+        setIsAddInventoryModalOpen(false);
     };
+
+
     return(
         <>
-            <Header />
+            <Header/>
             <Menu/>
             <div className="flex flex-col h-full w-full justify-center rounded-b-5xl select-none"
                  style={{...bgBigCard, ...boxShadow}}>
-                <div className="flex w-full justify-start ">
-                    <div className="bg-blue-500 p-2 rounded-full my-4 mx-32 text-white">
-                        <button onClick={openAddMeetingModal}>Add New Inventory</button>
-                    </div>
-                </div>
-                {isAddMeetingModalOpen && (
-                    <div className="modal-container">
-                        <AddNewMeeting onClose={closeAddMeetingModal}/>
-                    </div>
-                )}
+
 
                 <div className="flex flex-col w-9/10 h-full mx-20">
-                    <div className="flex flex-row w-full px-2 py-4 rounded-t-3xl"
+
+                    <div className="flex flex-row w-full px-2 py-4 rounded-t-3xl mt-20"
                          style={headerList}
                     >
                         <div className="flex mx-3">
                             <img
-                                src={meetingIcon}
+                                src={InventoryIcon}
                                 alt=""
                                 className="w-6 h-fit"
                             />
                         </div>
                         <div>
-                            <p className="text-white">Inventories</p>
+                            <p className="text-white">Inventory</p>
                         </div>
                     </div>
                     <div className="flex flex-col h-full px-7 rounded-b-3xl mb-20"
                          style={{...bgList, ...boxShadow}}
                     >
-                        {/*meeting dump data*/}
-                        {meetingData.slice(0, 5).map((meeting, index) => (
-                            <div id={`meeting-list-home-${index}`}
-                                 className="flex flex-row justify-between w-full p-5 items-center border-b-2 border-black"
-                                 key={index}
-                            >
-                                <div className="flex flex-col">
-                                    <div className="text-xl py-1">
-                                        {meeting.nama}
-                                    </div>
-                                    <div className="flex w-full flex-row py-1">
-                                        <div className="flex w-5 mr-3">
-                                            <img src={userIcon} alt="" className="mr-3"/>
-                                        </div>
-                                        <div>
-                                            <p className="text-sm">
-
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="flex w-full flex-row py-1">
-                                        <div className="flex w-5 mr-3">
-                                            <img src={timeIcon} alt="" className="mr-3"/>
-                                        </div>
-                                        <div>
-                                            <p className="text-sm">{meeting.jumlah}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex items-center p-1 px-3 text-white rounded-lg"
-                                     style={bgStatus}
-                                >
-                                    <p>NEW</p>
-                                </div>
+                        <div className="flex w-full justify-start ">
+                            <div className="bg-blue-500 p-2 rounded-full my-4 mx-10 text-white">
+                                <button onClick={openAddInventoryModal}>Add New Inventory</button>
                             </div>
-                        ))}
+                        </div>
+                        {isAddInventoryModalOpen && (
+                            <div className="modal-container">
+                                <AddNewInventory onClose={closeAddInventoryModal}/>
+                            </div>
+                        )}
+                        <div className="overflow-x-auto mb-10">
+                            <table className="table-auto w-full bg-white border-collapse border border-gray-300">
+                                <thead>
+                                <tr className="bg-blue-200">
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
+                                        Nama Barang
+                                    </th>
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
+                                        Jumlah Barang
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody className="divide-y divide-gray-300">
+                                {inventoryData.slice(startIndex, endIndex).map((inventory, index) => (
+                                    <tr id={`inventory-list-${index}`} className="bg-blue-100" key={index}>
+                                        <td className="px-6 py-4 whitespace-nowrap">{inventory.nama}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{inventory.jumlah}</td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
+                            <div
+                                className="mb-2">Showing {startIndex + 1} - {endIndex} of {inventoryData.length} inventories
+                            </div>
+
+                            <div className="flex justify-between mt-4">
+                                <button
+                                    onClick={handleClickPrev}
+                                    disabled={currentPage === 1}
+                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                >
+                                    Previous
+                                </button>
+                                <button
+                                    onClick={handleClickNext}
+                                    disabled={endIndex >= inventoryData.length}
+                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                >
+                                    Next
+                                </button>
+                            </div>
+                        </div>
 
                     </div>
 
@@ -179,4 +172,4 @@ function InvenroryList(){
     )
 }
 
-export default InvenroryList
+export default InventoryList
