@@ -4,7 +4,7 @@ import Footer from "../../Components/Footer/footer.jsx";
 import Menu from "../../Components/HamburgerMenu/menu.jsx"
 import AddNewMeeting from "./AddNewMeeting.jsx";
 import {useEffect, useState} from "react";
-import meetingIcon from "../../assets/meeting-logo.png";
+import meetingIcon from "../../assets/people.png";
 
 function MeetingList(){
     const [currentPage, setCurrentPage] = useState(1);
@@ -126,7 +126,7 @@ function MeetingList(){
                             />
                         </div>
                         <div>
-                            <p className="text-white">Meeting</p>
+                            <p >Meeting List</p>
                         </div>
                     </div>
                     <div className="flex flex-col h-full px-7 rounded-b-3xl mb-20"

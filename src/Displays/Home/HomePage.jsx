@@ -2,11 +2,11 @@ import '../../Styles/App.css'
 import Header from "../../Components/Header/header.jsx";
 import Footer from "../../Components/Footer/footer.jsx";
 import Menu from "../../Components/HamburgerMenu/menu.jsx"
-import meetingIcon from "../../assets/meeting-logo.png"
+import meetingIcon from "../../assets/people.png"
 import nextMeetingIcon from "../../assets/nextMeeting-logo.png"
 import profile from "../../assets/profile.png"
 import nextProjectIcon from "../../assets/nextProject-logo.png"
-import projectIcon from "../../assets/project-logo.png"
+import projectIcon from "../../assets/verified.png"
 import timeIcon from "../../assets/time.png"
 import userIcon from "../../assets/user.png"
 import {Link} from "react-router-dom";

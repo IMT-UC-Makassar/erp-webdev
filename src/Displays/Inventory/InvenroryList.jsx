@@ -104,7 +104,7 @@ function InventoryList(){
                             />
                         </div>
                         <div>
-                            <p className="text-white">Inventory</p>
+                            <p className="">Inventory List</p>
                         </div>
                     </div>
                     <div className="flex flex-col h-full px-7 rounded-b-3xl mb-20"

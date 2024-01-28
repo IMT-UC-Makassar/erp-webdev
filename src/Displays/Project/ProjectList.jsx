@@ -4,7 +4,7 @@ import Footer from "../../Components/Footer/footer.jsx";
 import Menu from "../../Components/HamburgerMenu/menu.jsx"
 import AddNewProject from "./AddNewProject.jsx";
 import {useEffect, useState} from "react";
-import projectIcon from "../../assets/project-logo.png";
+import projectIcon from "../../assets/verified.png";
 function ProjectList(){
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -129,7 +129,7 @@ function ProjectList(){
                             />
                         </div>
                         <div>
-                            <p className="text-white">Project</p>
+                            <p >Project List</p>
                         </div>
                     </div>
                     <div className="flex flex-col h-full px-7 rounded-b-3xl mb-20"
