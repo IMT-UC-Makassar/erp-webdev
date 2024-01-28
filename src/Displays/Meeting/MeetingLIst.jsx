@@ -8,6 +8,7 @@ import meetingIcon from "../../assets/people.png";
 
 function MeetingList(){
     const [currentPage, setCurrentPage] = useState(1);
+    const [isAddMeetingModalOpen, setIsAddMeetingModalOpen] = useState(false);
     const itemsPerPage = 5;
 
     const handleClickNext = () => {
@@ -92,9 +93,8 @@ function MeetingList(){
 
         // Call the combined function
         fetchData();
-    }, []); // Empty dependency array means this effect runs once when the component mounts
+    }, [isAddMeetingModalOpen]); // Empty dependency array means this effect runs once when the component mounts
 
-    const [isAddMeetingModalOpen, setIsAddMeetingModalOpen] = useState(false);
 
     const openAddMeetingModal = () => {
         setIsAddMeetingModalOpen(true);
@@ -103,7 +103,6 @@ function MeetingList(){
     const closeAddMeetingModal = () => {
         setIsAddMeetingModalOpen(false);
     };
-
 
     return(
         <>
