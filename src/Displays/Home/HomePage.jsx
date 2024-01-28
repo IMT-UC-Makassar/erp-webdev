@@ -145,48 +145,48 @@ function HomePage() {
                     </div>
                     <div className="flex flex-col justify-center">
                         <div className="flex justify-center mt-6">
-                            <p className="text-blue-600 text-2xl">Welcome To <span className="text-yellow-500">CE<span className="text-black">,</span></span></p>
+                            <p className="text-blue-600 text-3xl mb-4">Welcome To <span className="text-yellow-500">CE<span className="text-black">,</span></span></p>
                         </div>
                             <div className="flex justify-center">
-                                <strong className="text-xl">{localStorage.getItem('user.name')}</strong>
+                                <strong className="text-3xl">{localStorage.getItem('user.name')}</strong>
                             </div>
                     </div>
                 </div>
                 <div className="flex flex-row justify-evenly ">
-                    <div className="w-1/5 h-full flex flex-col rounded-xl mb-32 text-white"
+                    <div className="w-1/3 flex flex-col rounded-xl mb-32 text-white"
                          style={{...bgMeetingCard,...boxShadow}}
                     >
                         <div className="flex flex-row justify-between border-b-2 m-2 mx-10 border-orange-300">
-                            <div className="flex flex-col">
+                            <div className="flex flex-col text-2xl">
                                 <p>Next Meeting</p>
                                 <p>Schedule</p>
                             </div>
-                            <div className="flex w-11 h-11">
+                            <div className="flex w-16 h-16">
                                 <img src={nextMeetingIcon} alt=""/>
                             </div>
                         </div>
                         {meetingData.length > 0 && (
-                            <div className="flex flex-col mx-14 mb-5 ">
+                            <div className="flex flex-col mx-14 mb-5 py-5 text-xl">
                                 <p>{formatDate(meetingData[0].timeStart)}</p>
                                 <p>{formatTime(meetingData[0].timeStart)} WITA</p>
                             </div>
                         )}
                     </div>
-                    <div className="w-1/5 h-full flex flex-col rounded-xl text-white"
+                    <div className="w-1/3 h-full flex flex-col rounded-xl text-white"
                          style={{...bgProjectCard,...boxShadow}}
                     >
                         <div className="flex flex-row justify-between border-b-2 m-2 mx-10 ">
-                            <div className="flex flex-col ">
-                                <p>Next Project</p>
-                                <p>Schedule</p>
+                            <div className="flex flex-col  text-2xl">
+                                <p>Next Deadline</p>
+                                <p>Project</p>
                             </div>
-                            <div className="flex w-9 h-9 ">
+                            <div className="flex w-14 h-14 ">
                                 <img src={nextProjectIcon} alt=""/>
                             </div>
                         </div>
                         {projectData.length > 0 &&
                             (
-                            <div className="flex flex-col mx-14 mb-5 ">
+                            <div className="flex flex-col mx-14 mb-5  py-5 text-xl">
                                 <p>{formatDate(projectData[0].timeEnd)}</p>
                                 <p>{formatTime(projectData[0].timeEnd)} WITA</p>
                             </div>
@@ -208,7 +208,7 @@ function HomePage() {
                             />
                         </div>
                         <div>
-                            <p className="text-white">Meeting</p>
+                            <p>Meeting</p>
                         </div>
                     </div>
                     <div className="flex flex-col h-full px-7 rounded-b-3xl "
@@ -270,7 +270,7 @@ function HomePage() {
                             />
                         </div>
                         <div>
-                            <p className="text-white">Project</p>
+                            <p>Project</p>
                         </div>
                     </div>
                     <div className="flex flex-col bg-gray-200 h-full px-7 rounded-b-3xl"
@@ -300,7 +300,7 @@ function HomePage() {
                                             <img src={timeIcon} alt="" className="mr-3"/>
                                         </div>
                                         <div>
-                                            <p className="text-sm">{formatDate(projectData[index].timeStart)}, {formatTime(projectData[index].timeStart)} - {formatTime(projectData[0].timeEnd)} WITA</p>
+                                            <p className="text-sm">{formatDate(projectData[index].timeStart)}, {formatTime(projectData[index].timeStart)} - {formatDate(projectData[index].timeEnd)} {formatTime(projectData[0].timeEnd)} WITA</p>
                                         </div>
                                     </div>
                                 </div>
