@@ -8,6 +8,17 @@ function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const headerList = {
+        backgroundColor: "#ffce32", // Orange
+    };
+
+    const bgBlue ={
+        backgroundColor: "#1d63ff"
+    }
+    const textColor = {
+        color: "#121722"
+
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -29,32 +40,33 @@ function Login() {
     };
     return (<>
 
-        <header className="bg-orange-300 text-white p-4 w-full h-16 flex"></header>
+        <header style={headerList} className=" text-white p-4 w-full h-16 flex"></header>
         <div id="terluar">
 
-            <div id="bg-login" className=" justify-center flex w-full h-full">
-                <div id="img-login" className="w-full h-full absolute">
+            <div id="bg-login" className=" justify-center flex w-full min-h-screen items-center h-full">
+                <div id="img-login" className="w-full h-full absolute ">
 
                 </div>
                 <div id="login-box"
-                     className="flex flex-col justify-center items-center w-1/4 mt-32 mb-16 h-fit bg-orange-300 rounded-l relative">
+                     style={{...headerList,...textColor}}
+                     className="flex flex-col justify-center items-center w-1/4 mt-32 mb-16 h-fit rounded-l relative">
                     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                             <img
-                                className="mx-auto h-10 w-auto"
+                                className="mx-auto h-16 w-auto rounded-full"
                                 src={logo_ce}
                                 alt="Your Company"
                             />
-                            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight ">
                                 Sign in to your account
                             </h2>
                         </div>
 
                         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                            <form className="space-y-6" method="POST" onSubmit={handleSubmit}>
+                             <form className="space-y-6" method="POST" onSubmit={handleSubmit}>
                                 <div>
                                     <label htmlFor="email"
-                                           className="block text-sm font-medium leading-6 text-gray-900">
+                                           className="block text-sm font-medium leading-6 ">
                                         Email address
                                     </label>
                                     <div className="mt-2">
@@ -65,7 +77,7 @@ function Login() {
                                             autoComplete="email"
                                             required
                                             onChange={e => setUsername(e.target.value)}
-                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-2"
+                                            className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-2"
                                         />
                                     </div>
                                 </div>
@@ -73,7 +85,7 @@ function Login() {
                                 <div>
                                     <div className="flex items-center justify-between">
                                         <label htmlFor="password"
-                                               className="block text-sm font-medium leading-6 text-gray-900">
+                                               className="block text-sm font-medium leading-6 ">
                                             Password
                                         </label>
                                     </div>
@@ -93,7 +105,8 @@ function Login() {
                                 <div>
                                     <button
                                         type="submit"
-                                        className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                        style={bgBlue}
+                                        className="flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                     >
                                         Sign in
                                     </button>
@@ -104,7 +117,7 @@ function Login() {
                 </div>
             </div>
         </div>
-        <footer id="footer" className="bg-orange-300 h-16 w-full static bottom-0"></footer>
+        <footer id="footer" style={headerList} className=" h-16 w-full static bottom-0"></footer>
     </>)
 
 }

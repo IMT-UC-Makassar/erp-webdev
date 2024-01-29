@@ -54,9 +54,6 @@ function ProjectList(){
         backgroundColor: "#FFFFFF", // Light Gray
     };
 
-    const bgStatus = {
-        backgroundColor: "#1d63ff", // Blue
-    };
 
     const boxShadow = {
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Subtle shadow for depth

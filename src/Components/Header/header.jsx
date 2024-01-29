@@ -1,13 +1,10 @@
 import logo from '/src/assets/logo-CE.jpg'
 import {Link, useNavigate} from "react-router-dom";
-import logoutIcon from "../../assets/logout-icon.png"
 import {useAuth} from "../../services/authContext.jsx";
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 import LogoutConfirmation from "../LogoutConfirmation/logoutConfirmation.jsx";
 import {useState} from "react";
 import profile from "../../assets/profile.png";
-import {Button} from "@mui/material";
 import { Menu, Transition } from '@headlessui/react'
 import {Fragment} from "react";
 
@@ -64,15 +61,14 @@ const Header = () => {
             </div>
             <div className="flex w-1/2 justify-end">
                 <div className="items-center flex">
-                    <div className="text-md mr-3 flex items-center h-full">
-                        <strong>{localStorage.getItem('user.name')}</strong>
-                    </div>
 
                     <Menu as="div" className="relative inline-block text-left">
 
                         <div>
+
                             <Menu.Button
-                                className="inline-flex w-full justify-center gap-x-1.5 rounded-md  px-3 py-2 text-sm font-semibold text-gray-900  ring-inset ring-gray-300">
+                                className="inline-flex w-full justify-center gap-x-1.5 rounded-md  px-3 py-2 text-md  items-center  text-gray-900  ring-inset ring-gray-300">
+                                <strong>{localStorage.getItem('user.name')}</strong>
                                 <img src={profile} alt="" className="w-10 border-2 border-blue-500 rounded-full"/>
                             </Menu.Button>
                         </div>

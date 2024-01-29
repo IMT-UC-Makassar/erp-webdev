@@ -13,12 +13,8 @@ function AddNewInventory({ onClose }) {
   const titlestylecolor = {
     backgroundColor: "#ffce32",
   };
-  const bgForm = {
-    backgroundColor: "#C9C9C9",
-  };
-  const bgInput = {
-    backgroundColor: "#F6F4F4",
-  };
+
+
   const bgButtonAdd = {
     backgroundColor: "#1d63ff",
   };

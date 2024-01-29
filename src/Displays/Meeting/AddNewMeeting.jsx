@@ -24,9 +24,7 @@ function AddNewMeeting({onClose}) {
   const titlestylecolor = {
     backgroundColor: "#ffce32",
   };
-  const bgForm = {
-    backgroundColor: "#C9C9C9",
-  };
+
   const bgInput = {
     backgroundColor: "#F6F4F4",
   };
@@ -43,7 +41,6 @@ function AddNewMeeting({onClose}) {
       selectedMinuteMulai,
   );
 
-  const timestampStringMulaiWithOffset = timestampMulai + '.000+00:00';
 
   const timestampAkhir = new Date(
     selectedYearAkhir,
@@ -53,7 +50,6 @@ function AddNewMeeting({onClose}) {
     selectedMinuteAkhir,
 );
 
-const timestampStringAkhirWithOffset = timestampAkhir + '.000+00:00';
 
   const userData = {
     email : localStorage.getItem('user.email'),

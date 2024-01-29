@@ -1,5 +1,4 @@
 import igLogo from "../../assets/Instagram.png";
-import { useEffect, useState } from "react";
 
 const Footer = () => {
     const openInstagram = () => {
@@ -13,28 +12,6 @@ const Footer = () => {
     const textColor = {
         color: "#121722"
     };
-
-    // State to track the height of the main content
-    const [mainContentHeight, setMainContentHeight] = useState(0);
-
-    useEffect(() => {
-        const updateMainContentHeight = () => {
-            const mainContent = document.getElementById("main-content");
-            if (mainContent) {
-                const height = mainContent.offsetHeight;
-                setMainContentHeight(height);
-            }
-        };
-
-        // Update the main content height initially and on window resize
-        updateMainContentHeight();
-        window.addEventListener("resize", updateMainContentHeight);
-
-        return () => {
-            window.removeEventListener("resize", updateMainContentHeight);
-        };
-    }, []);
-
     return (
 
             <footer

@@ -1,6 +1,6 @@
 import "../../Styles/App.css";
 import React, { useState } from "react";
-import ProjectLogo from "../../assets/project-logo.png";
+import ProjectLogo from "../../assets/verified.png";
 import { useAuth } from "../../services/authContext.jsx";
 import createAxiosInstance from "../../services/axiosInstance.jsx";
 
@@ -20,14 +20,11 @@ function AddNewProject({ onClose }) {
   const [selectedHourAkhir, setSelectedHourAkhir] = useState("Hour");
   const [selectedMinuteMulai, setSelectedMinuteMulai] = useState("Minute");
   const [selectedMinuteAkhir, setSelectedMinuteAkhir] = useState("Minute");
-  const [anggotaProject, setAnggotaProject] = useState("");
 
   const titlestylecolor = {
     backgroundColor: "#ffce32",
   };
-  const bgForm = {
-    backgroundColor: "#C9C9C9",
-  };
+
   const bgInput = {
     backgroundColor: "#F6F4F4",
   };
@@ -43,7 +40,6 @@ function AddNewProject({ onClose }) {
     selectedMinuteMulai
   );
 
-  const timestampStringMulaiWithOffset = timestampMulai + ".000+00:00";
 
   const timestampAkhir = new Date(
     selectedYearAkhir,
@@ -53,7 +49,6 @@ function AddNewProject({ onClose }) {
     selectedMinuteAkhir
   );
 
-  const timestampStringAkhirWithOffset = timestampAkhir + ".000+00:00";
 
   const userData = {
     email: localStorage.getItem("user.email"),
