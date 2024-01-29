@@ -75,10 +75,10 @@ function AddNewMeeting({onClose}) {
                     <div className="w-19 h-fit ml-7 flex">
                         <img
                             src={Meetinglogo}
-                            alt="MeetingLogo"
+                            alt="meeting"
                             className="w-6 h-fit pt-3"
                         />
-                        <h1 className="ml-5 flex pt-3  font-semibold text-[18px] text-gray-800">
+                        <h1 className="ml-5 flex pt-3 font-semibold text-[18px] text-gray-800">
                             New Meeting
                         </h1>
                     </div>
