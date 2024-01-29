@@ -18,6 +18,10 @@ function MeetingList(){
         setCurrentPage(prevPage => Math.max(prevPage - 1, 1));
     };
 
+    const textColor = {
+        color: "#121722"
+
+    }
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = currentPage * itemsPerPage;
 
@@ -47,13 +51,16 @@ function MeetingList(){
     };
 
     const headerList = {
-        backgroundColor: "#F2C22A", // Orange
+        backgroundColor: "#ffce32", // Orange
     };
 
     const bgList = {
         backgroundColor: "#FFFFFF", // Light Gray
     };
 
+    const bgBlue ={
+        backgroundColor: "#1d63ff"
+    }
 
     const boxShadow = {
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Subtle shadow for depth
@@ -110,7 +117,7 @@ function MeetingList(){
             <Header/>
             <Menu/>
             <div className="flex flex-col h-full w-full justify-center rounded-b-5xl select-none"
-                 style={{...bgBigCard, ...boxShadow}}>
+                 style={{...bgBigCard, ...boxShadow, ...textColor}}>
 
 
                 <div className="flex flex-col w-9/10 h-full mx-20">
@@ -133,7 +140,8 @@ function MeetingList(){
                          style={{...bgList, ...boxShadow}}
                     >
                         <div className="flex w-full justify-start ">
-                            <div className="bg-blue-500 p-2 rounded-full my-4 mx-10 text-white">
+                            <div className=" p-2 rounded-full my-4  text-white"
+                            style={bgBlue}>
                                 <button onClick={openAddMeetingModal}>Add New Meeting</button>
                             </div>
                         </div>
@@ -183,14 +191,16 @@ function MeetingList(){
                                 <button
                                     onClick={handleClickPrev}
                                     disabled={currentPage === 1}
-                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                    style={bgBlue}
+                                    className=" text-white font-bold py-2 px-4 rounded"
                                 >
                                     Previous
                                 </button>
                                 <button
                                     onClick={handleClickNext}
                                     disabled={endIndex >= meetingData.length}
-                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                    style={bgBlue}
+                                    className=" text-white font-bold py-2 px-4 rounded"
                                 >
                                     Next
                                 </button>

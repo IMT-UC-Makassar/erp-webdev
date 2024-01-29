@@ -47,7 +47,7 @@ function ProjectList(){
     };
 
     const headerList = {
-        backgroundColor: "#F2C22A", // Orange
+        backgroundColor: "#ffce32", // Orange
     };
 
     const bgList = {
@@ -55,13 +55,22 @@ function ProjectList(){
     };
 
     const bgStatus = {
-        backgroundColor: "#2196F3", // Blue
+        backgroundColor: "#1d63ff", // Blue
     };
 
     const boxShadow = {
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Subtle shadow for depth
     };
 
+
+    const textColor = {
+        color: "#121722"
+
+    }
+
+    const bgBlue ={
+        backgroundColor: "#1d63ff"
+    }
 
     // Assume you have the authentication token available
     const authToken = localStorage.getItem('token');
@@ -113,7 +122,7 @@ function ProjectList(){
             <Header/>
             <Menu/>
             <div className="flex flex-col h-full w-full justify-center rounded-b-5xl select-none"
-                 style={{...bgBigCard, ...boxShadow}}>
+                 style={{...bgBigCard, ...boxShadow, ...textColor}}>
 
 
                 <div className="flex flex-col w-9/10 h-full mx-20">
@@ -136,7 +145,8 @@ function ProjectList(){
                          style={{...bgList, ...boxShadow}}
                     >
                         <div className="flex w-full justify-start ">
-                            <div className="bg-blue-500 p-2 rounded-full my-4 mx-10 text-white">
+                            <div style={bgBlue}
+                                className=" p-2 rounded-full my-4  text-white">
                                 <button onClick={openAddProjectModal}>Add New Project</button>
                             </div>
                         </div>
@@ -186,14 +196,16 @@ function ProjectList(){
                                 <button
                                     onClick={handleClickPrev}
                                     disabled={currentPage === 1}
-                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                    style={bgBlue}
+                                    className=" text-white font-bold py-2 px-4 rounded"
                                 >
                                     Previous
                                 </button>
                                 <button
                                     onClick={handleClickNext}
                                     disabled={endIndex >= projectData.length}
-                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                    style={bgBlue}
+                                    className=" text-white font-bold py-2 px-4 rounded"
                                 >
                                     Next
                                 </button>

@@ -17,15 +17,15 @@ function HomePage() {
     };
 
     const bgMeetingCard = {
-        backgroundColor: "#009FBC", // Blue Gray
+        backgroundColor: "#1d63ff", // Blue Gray
     };
 
     const bgProjectCard = {
-        backgroundColor: "#DDAD75", // Blue Gray
+        backgroundColor: "#ffce32", // Blue Gray
     };
 
     const headerList = {
-        backgroundColor: "#F2C22A", // Orange
+        backgroundColor: "#ffce32", // Orange
     };
 
     const bgList = {
@@ -33,12 +33,17 @@ function HomePage() {
     };
 
     const bgStatus = {
-        backgroundColor: "#2196F3", // Blue
+        backgroundColor: "#1d63ff", // Blue
     };
 
     const boxShadow = {
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Subtle shadow for depth
     };
+
+    const textColor = {
+        color: "#121722"
+
+    }
 
 
     const [meetingData, setMeetingData] = useState([]);
@@ -138,7 +143,7 @@ function HomePage() {
                 <div className="flex flex-col justify-center items-center mb-16">
 
 
-                   
+
                 </div>
                 <div className="flex flex-row justify-evenly ">
                     <div className="w-1/3 flex flex-col rounded-xl mb-32 text-white"
@@ -161,9 +166,9 @@ function HomePage() {
                         )}
                     </div>
                     <div className="w-1/3 h-full flex flex-col rounded-xl text-white"
-                         style={{...bgProjectCard,...boxShadow}}
+                         style={{...bgProjectCard,...boxShadow, ...textColor}}
                     >
-                        <div className="flex flex-row justify-between border-b-2 m-2 mx-10 ">
+                        <div className="flex flex-row justify-between border-b-2 m-2 mx-10 border-blue-500 ">
                             <div className="flex flex-col  text-2xl">
                                 <p>Next Deadline</p>
                                 <p>Project</p>
@@ -195,12 +200,12 @@ function HomePage() {
                                 className="w-6 h-fit"
                             />
                         </div>
-                        <div>
+                        <div style={textColor}>
                             <p>Meeting</p>
                         </div>
                     </div>
                     <div className="flex flex-col h-full px-7 rounded-b-3xl "
-                         style={{...bgList,...boxShadow}}
+                         style={{...bgList,...boxShadow,...textColor}}
                     >
                         {/*meeting dump data*/}
                         {meetingData.slice(0,5).map((meeting, index) => (
@@ -257,12 +262,12 @@ function HomePage() {
                                 className="w-6 h-fit"
                             />
                         </div>
-                        <div>
+                        <div style={textColor}>
                             <p>Project</p>
                         </div>
                     </div>
                     <div className="flex flex-col bg-gray-200 h-full px-7 rounded-b-3xl"
-                         style={{...bgList,...boxShadow}}>
+                         style={{...bgList,...boxShadow,...textColor}}>
                         {/*Project dump data*/}
                         {projectData.slice(0,5).map((project, index) => (
                             <div id={`project-list-home-${index}`}
