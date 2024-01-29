@@ -74,7 +74,7 @@ function AddNewProject({onClose}) {
         setter(event.target.value);
     };
 
-    return (<div className="justify-center flex flex-col w-full md:w-3/5 items-center ">
+    return (<div className="justify-center flex flex-col w-full mx-2 md:w-3/5 items-center ">
         <div style={titlestylecolor} className="flex h-12 w-full rounded-t-lg ">
             <div className="flex flex-row ">
                 <div className="w-19 h-fit ml-7 flex">
