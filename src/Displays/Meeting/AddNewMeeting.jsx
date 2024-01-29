@@ -69,7 +69,7 @@ function AddNewMeeting({onClose}) {
         setter(event.target.value);
     };
 
-    return (<div className="justify-center flex flex-col w-3/5 items-center ">
+    return (<div className="justify-center flex flex-col w-full md:w-3/5 items-center">
             <div style={titlestylecolor} className="flex h-12 w-full rounded-t-lg ">
                 <div className="flex flex-row ">
                     <div className="w-19 h-fit ml-7 flex">
@@ -86,7 +86,7 @@ function AddNewMeeting({onClose}) {
             </div>
             <div className="flex rounded-b-lg w-full bg-white">
                 <form className="flex w-full">
-                    <div className="flex flex-col w-full pt-4 pl-16 pr-6 pb-14">
+                    <div className="flex flex-col w-full pt-4 pl-6 pr-6 pb-14">
                         <div className="p-3">
                             <TextField
                                 className="w-full"

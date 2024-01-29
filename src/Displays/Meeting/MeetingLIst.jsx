@@ -29,8 +29,7 @@ function MeetingList(){
             month: 'long',
             day: 'numeric',
         };
-        const formattedDate = new Date(dateString).toLocaleDateString('id-ID', options);
-        return formattedDate;
+        return new Date(dateString).toLocaleDateString('id-ID', options);
     };
 
     const formatTime = (dateString) => {
@@ -38,8 +37,7 @@ function MeetingList(){
             hour: 'numeric',
             minute: 'numeric',
         };
-        const formattedTime = new Date(dateString).toLocaleTimeString('id-ID', options);
-        return formattedTime;
+        return new Date(dateString).toLocaleTimeString('id-ID', options);
     };
 
     const [meetingData, setMeetingData] = useState([]);
@@ -93,8 +91,7 @@ function MeetingList(){
 
         // Call the combined function
         fetchData();
-    }, [isAddMeetingModalOpen]); // Empty dependency array means this effect runs once when the component mounts
-
+    }, [authToken, isAddMeetingModalOpen]); // Empty dependency array means this effect runs once when the component mounts
 
     const openAddMeetingModal = () => {
         setIsAddMeetingModalOpen(true);
@@ -110,13 +107,9 @@ function MeetingList(){
             <Menu/>
             <div className="flex flex-col h-full w-full justify-center rounded-b-5xl select-none"
                  style={{...bgBigCard, ...boxShadow}}>
-
-
-                <div className="flex flex-col w-9/10 h-full mx-20">
-
-                    <div className="flex flex-row w-full px-2 py-4 rounded-t-3xl mt-20"
-                         style={headerList}
-                    >
+                <div className="flex flex-col w-9/10 h-full mx-2 md:mx-20">
+                    <div className="flex flex-row w-full px-2 py-4 rounded-t-3xl mt-16"
+                         style={headerList}>
                         <div className="flex mx-3">
                             <img
                                 src={meetingIcon}
@@ -132,7 +125,7 @@ function MeetingList(){
                          style={{...bgList, ...boxShadow}}
                     >
                         <div className="flex w-full justify-start ">
-                            <div className="bg-blue-500 p-2 rounded-full my-4 mx-10 text-white">
+                            <div className="bg-blue-500 p-2 rounded-full my-4 text-white">
                                 <button onClick={openAddMeetingModal}>Add New Meeting</button>
                             </div>
                         </div>
