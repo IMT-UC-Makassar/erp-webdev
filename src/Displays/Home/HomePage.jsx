@@ -138,13 +138,30 @@ function HomePage() {
             <Menu/>
             <div className="flex flex-col h-full w-full justify-center rounded-b-5xl select-none"
                  style={{...bgBigCard,...boxShadow}}>
-                <div className="flex flex-col justify-center items-center mb-16">
 
+                <div className="flex flex-row justify-evenly my-20">
+                    {meetingData.length === 0 ? (
+                        <div className="w-1/3 h-full flex flex-col rounded-xl text-white"
+                             style={{...bgMeetingCard, ...boxShadow}}
+                        >
+                            <div className="flex flex-row justify-between border-b-2 m-2 mx-10 border-orange-300 ">
+                                <div className="flex flex-col  text-2xl">
+                                    <p>Next Meeting</p>
+                                    <p>Schedule</p>
+                                </div>
+                                <div className="flex w-14 h-14 ">
+                                    <img src={nextMeetingIcon} alt=""/>
+                                </div>
+                            </div>
 
+                            <div className="flex flex-col mx-14 mb-5  py-5 text-xl">
+                                <p>DD/MM/YY</p>
+                                <p> -- : -- WITA</p>
+                            </div>
 
-                </div>
-                <div className="flex flex-row justify-evenly ">
-                    <div className="w-1/3 flex flex-col rounded-xl mb-32 text-white"
+                        </div>
+                    ) : (
+                    <div className="w-1/3 flex flex-col rounded-xl text-white"
                          style={{...bgMeetingCard,...boxShadow}}
                     >
                         <div className="flex flex-row justify-between border-b-2 m-2 mx-10 border-orange-300">
@@ -163,26 +180,49 @@ function HomePage() {
                             </div>
                         )}
                     </div>
-                    <div className="w-1/3 h-full flex flex-col rounded-xl text-white"
-                         style={{...bgProjectCard,...boxShadow, ...textColor}}
-                    >
-                        <div className="flex flex-row justify-between border-b-2 m-2 mx-10 border-blue-500 ">
-                            <div className="flex flex-col  text-2xl">
-                                <p>Next Deadline</p>
-                                <p>Project</p>
+                    )}
+                    {projectData.length === 0 ? (
+                        <div className="w-1/3 h-full flex flex-col rounded-xl text-white"
+                             style={{...bgProjectCard, ...boxShadow, ...textColor}}
+                        >
+                            <div className="flex flex-row justify-between border-b-2 m-2 mx-10 border-blue-500 ">
+                                <div className="flex flex-col  text-2xl">
+                                    <p>Next Deadline</p>
+                                    <p>Project</p>
+                                </div>
+                                <div className="flex w-14 h-14 ">
+                                    <img src={nextProjectIcon} alt=""/>
+                                </div>
                             </div>
-                            <div className="flex w-14 h-14 ">
-                                <img src={nextProjectIcon} alt=""/>
-                            </div>
+
+                                    <div className="flex flex-col mx-14 mb-5  py-5 text-xl">
+                                        <p>DD/MM/YY</p>
+                                        <p> -- : -- WITA</p>
+                                    </div>
+
                         </div>
-                        {projectData.length > 0 &&
-                            (
-                            <div className="flex flex-col mx-14 mb-5  py-5 text-xl">
-                                <p>{formatDate(projectData[0].timeEnd)}</p>
-                                <p>{formatTime(projectData[0].timeEnd)} WITA</p>
+                    ) : (
+                        <div className="w-1/3 h-full flex flex-col rounded-xl text-white"
+                             style={{...bgProjectCard, ...boxShadow, ...textColor}}
+                        >
+                            <div className="flex flex-row justify-between border-b-2 m-2 mx-10 border-blue-500 ">
+                                <div className="flex flex-col  text-2xl">
+                                    <p>Next Deadline</p>
+                                    <p>Project</p>
+                                </div>
+                                <div className="flex w-14 h-14 ">
+                                    <img src={nextProjectIcon} alt=""/>
+                                </div>
                             </div>
+                            {projectData.length > 0 &&
+                                (
+                                    <div className="flex flex-col mx-14 mb-5  py-5 text-xl">
+                                        <p>{formatDate(projectData[0].timeEnd)}</p>
+                                        <p>{formatTime(projectData[0].timeEnd)} WITA</p>
+                                    </div>
+                                )}
+                        </div>
                         )}
-                    </div>
                 </div>
             </div>
 
@@ -202,6 +242,14 @@ function HomePage() {
                             <p>Meeting</p>
                         </div>
                     </div>
+                        {meetingData.length === 0 ? (
+                            <div style={{...bgList,...boxShadow,...textColor}}
+                                className=" flex justify-center items-center p-40 overflow-x-auto mb-10">
+                                <div className="flex justify-center items-center h-full">
+                                    <p className="text-gray-500 text-lg">Meeting is empty. Please add new Meeting.</p>
+                                </div>
+                            </div>
+                        ) : (
                     <div className="flex flex-col h-full px-7 rounded-b-3xl "
                          style={{...bgList,...boxShadow,...textColor}}
                     >
@@ -240,15 +288,16 @@ function HomePage() {
                                     <p>NEW</p>
                                 </div>
                             </div>
-                    ))}
+                        ))}
                         <div className="flex p-5 justify-center">
                             <Link to="/meetinglist">
                                 <p>See All</p>
                             </Link>
                         </div>
 
-                    </div>
 
+                    </div>
+                        )}
                 </div>
                 <div className="flex flex-col w-1/2 h-full m-20">
                     <div className="flex flex-row w-full bg-orange-300 px-2 py-4 rounded-t-3xl"
@@ -264,6 +313,14 @@ function HomePage() {
                             <p>Project</p>
                         </div>
                     </div>
+                    {projectData.length === 0 ? (
+                        <div style={{...bgList,...boxShadow,...textColor}}
+                             className=" flex justify-center items-center p-40 overflow-x-auto mb-10">
+                            <div className="flex justify-center items-center h-full">
+                                <p className="text-gray-500 text-lg">Project is empty. Please add new Project.</p>
+                            </div>
+                        </div>
+                    ) : (
                     <div className="flex flex-col bg-gray-200 h-full px-7 rounded-b-3xl"
                          style={{...bgList,...boxShadow,...textColor}}>
                         {/*Project dump data*/}
@@ -302,7 +359,7 @@ function HomePage() {
                         </div>
 
                     </div>
-
+                        )}
                 </div>
 
 

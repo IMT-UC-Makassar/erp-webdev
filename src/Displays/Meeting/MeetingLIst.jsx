@@ -115,7 +115,7 @@ function MeetingList(){
         <>
             <Header/>
             <Menu/>
-            <div className="flex flex-col h-full w-full justify-center rounded-b-5xl select-none"
+            <div className="flex flex-col min-h-screen w-full justify-center rounded-b-5xl select-none"
                  style={{...bgBigCard, ...boxShadow, ...textColor}}>
 
 
