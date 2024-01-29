@@ -319,7 +319,7 @@ const timestampStringAkhirWithOffset = timestampAkhir + '.000+00:00';
               </button>
             </div>
             {showErrorPopup && (
-                <div className="error-popup">
+                <div>
                   <p className="text-red-600"> !! Please fill in all required fields. !! </p>
                 </div>
             )}

@@ -137,20 +137,8 @@ function HomePage() {
                  style={{...bgBigCard,...boxShadow}}>
                 <div className="flex flex-col justify-center items-center mb-16">
 
-                    <div className="flex justify-center border-2 w-1/12 h-full rounded-full mt-20 border-blue-500">
-                        <Link to="/profile">
 
-                        <img src={profile} alt=""/>
-                        </Link>
-                    </div>
-                    <div className="flex flex-col justify-center">
-                        <div className="flex justify-center mt-6">
-                            <p className="text-blue-600 text-3xl mb-4">Welcome To <span className="text-yellow-500">CE<span className="text-black">,</span></span></p>
-                        </div>
-                            <div className="flex justify-center">
-                                <strong className="text-3xl">{localStorage.getItem('user.name')}</strong>
-                            </div>
-                    </div>
+                   
                 </div>
                 <div className="flex flex-row justify-evenly ">
                     <div className="w-1/3 flex flex-col rounded-xl mb-32 text-white"
