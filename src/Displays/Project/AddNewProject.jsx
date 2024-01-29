@@ -74,7 +74,7 @@ function AddNewProject({onClose}) {
         setter(event.target.value);
     };
 
-    return (<div className="justify-center flex flex-col w-3/5 items-center ">
+    return (<div className="justify-center flex flex-col w-full md:w-3/5 items-center ">
         <div style={titlestylecolor} className="flex h-12 w-full rounded-t-lg ">
             <div className="flex flex-row ">
                 <div className="w-19 h-fit ml-7 flex">
@@ -92,7 +92,7 @@ function AddNewProject({onClose}) {
 
         <div className="flex w-full rounded-b-lg bg-white">
             <form className="flex w-full">
-                <div className="flex flex-col w-full pt-4 pl-16 pr-6 pb-14">
+                <div className="flex flex-col w-full pt-4 px-6 pb-10">
                     <div className="p-3">
                         <TextField
                             className="w-full"
@@ -140,7 +140,7 @@ function AddNewProject({onClose}) {
                             !! Please fill in all required fields. !!{" "}
                         </p>
                     </div>)}
-                    <div className="mt-7 mr-5">
+                    <div className="mt-4 mr-4">
                         <button
                             className="float-right ml-5 text-center pt-2 pb-2 pl-8 pr-8 text-white font-semibold rounded-full"
                             style={bgButtonAdd}

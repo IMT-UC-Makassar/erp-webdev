@@ -86,7 +86,7 @@ function AddNewMeeting({onClose}) {
             </div>
             <div className="flex rounded-b-lg w-full bg-white">
                 <form className="flex w-full">
-                    <div className="flex flex-col w-full pt-4 pl-6 pr-6 pb-14">
+                    <div className="flex flex-col w-full pt-4 px-6 pb-10">
                         <div className="p-3">
                             <TextField
                                 className="w-full"
@@ -133,7 +133,7 @@ function AddNewMeeting({onClose}) {
                                 onChange={(e) => setLokasiMeeting(e.target.value)}
                             />
                         </div>
-                        <div className="mt-7 mr-5">
+                        <div className="mt-4 mr-4">
                         {showErrorPopup && (<div className="error-popup">
                                 <p className="text-red-600"> !! Please fill in all required fields. !! </p>
                             </div>)}

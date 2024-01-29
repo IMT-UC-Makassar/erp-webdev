@@ -5,9 +5,10 @@ import Menu from "../../Components/HamburgerMenu/menu.jsx"
 import AddNewProject from "./AddNewProject.jsx";
 import {useEffect, useState} from "react";
 import projectIcon from "../../assets/verified.png";
-function ProjectList(){
 
+function ProjectList(){
     const [currentPage, setCurrentPage] = useState(1);
+    const [isAddProjectModalOpen, setIsAddProjectModalOpen] = useState(false);
     const itemsPerPage = 5;
 
     const handleClickNext = () => {
@@ -25,8 +26,7 @@ function ProjectList(){
             month: 'long',
             day: 'numeric',
         };
-        const formattedDate = new Date(dateString).toLocaleDateString('id-ID', options);
-        return formattedDate;
+        return new Date(dateString).toLocaleDateString('id-ID', options);
     };
 
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -37,11 +37,11 @@ function ProjectList(){
             hour: 'numeric',
             minute: 'numeric',
         };
-        const formattedTime = new Date(dateString).toLocaleTimeString('id-ID', options);
-        return formattedTime;
+        return new Date(dateString).toLocaleTimeString('id-ID', options);
     };
 
     const [projectData, setProjectData] = useState([]);
+    
     const bgBigCard = {
         backgroundColor: "#ECEAC6", // Yellow
     };
@@ -52,10 +52,6 @@ function ProjectList(){
 
     const bgList = {
         backgroundColor: "#FFFFFF", // Light Gray
-    };
-
-    const bgStatus = {
-        backgroundColor: "#2196F3", // Blue
     };
 
     const boxShadow = {
@@ -95,9 +91,7 @@ function ProjectList(){
 
         // Call the combined function
         fetchData();
-    }, []); // Empty dependency array means this effect runs once when the component mounts
-
-    const [isAddProjectModalOpen, setIsAddProjectModalOpen] = useState(false);
+    }, [authToken, isAddProjectModalOpen]); // Empty dependency array means this effect runs once when the component mounts
 
     const openAddProjectModal = () => {
         setIsAddProjectModalOpen(true);
@@ -107,20 +101,15 @@ function ProjectList(){
         setIsAddProjectModalOpen(false);
     };
 
-
     return(
         <>
             <Header/>
             <Menu/>
             <div className="flex flex-col h-full w-full justify-center rounded-b-5xl select-none"
                  style={{...bgBigCard, ...boxShadow}}>
-
-
-                <div className="flex flex-col w-9/10 h-full mx-20">
-
-                    <div className="flex flex-row w-full px-2 py-4 rounded-t-3xl mt-20"
-                         style={headerList}
-                    >
+                <div className="flex flex-col w-9/10 h-full mx-2 md:mx-16">
+                    <div className="flex flex-row w-full px-2 py-4 rounded-t-3xl mt-16"
+                         style={headerList}>
                         <div className="flex mx-3">
                             <img
                                 src={projectIcon}
@@ -136,7 +125,7 @@ function ProjectList(){
                          style={{...bgList, ...boxShadow}}
                     >
                         <div className="flex w-full justify-start ">
-                            <div className="bg-blue-500 p-2 rounded-full my-4 mx-10 text-white">
+                            <div className="bg-blue-500 p-2 rounded-full my-4 text-white">
                                 <button onClick={openAddProjectModal}>Add New Project</button>
                             </div>
                         </div>
@@ -149,16 +138,16 @@ function ProjectList(){
                             <table className="table-auto w-full bg-white border-collapse border border-gray-300">
                                 <thead>
                                 <tr className="bg-blue-200">
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
-                                        Tities
+                                    <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
+                                        Title
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
-                                        Status kami Single
+                                    <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
+                                        Status
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
+                                    <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
                                         Time
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
+                                    <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
                                         Department
                                     </th>
                                 </tr>
@@ -166,13 +155,13 @@ function ProjectList(){
                                 <tbody className="divide-y divide-gray-300">
                                 {projectData.slice(startIndex, endIndex).map((project, index) => (
                                     <tr id={`project-list-${index}`} className="bg-blue-100" key={index}>
-                                        <td className="px-6 py-4 whitespace-nowrap">{project.title}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap">{project.status}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap">
+                                        <td className="px-2 md:px-6 py-4 whitespace-nowrap">{project.title}</td>
+                                        <td className="px-2 md:px-6 py-4 whitespace-nowrap">{project.status}</td>
+                                        <td className="px-2 md:px-6 py-4 whitespace-nowrap">
                                             {formatDate(project.timeStart)}, {formatTime(project.timeStart)} - {formatTime(project.timeEnd)} WITA
                                         </td>
                                         {project.department && (
-                                            <td className="px-6 py-4 whitespace-nowrap">{project.department}</td>
+                                            <td className="px-2 md:px-6 py-4 whitespace-nowrap">{project.department}</td>
                                         )}
                                     </tr>
                                 ))}
