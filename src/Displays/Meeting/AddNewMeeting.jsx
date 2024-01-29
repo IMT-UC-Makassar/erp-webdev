@@ -69,16 +69,16 @@ function AddNewMeeting({onClose}) {
         setter(event.target.value);
     };
 
-    return (<div className="justify-center flex flex-col w-3/5 items-center ">
+    return (<div className="justify-center flex flex-col w-full mx-2 md:w-3/5 items-center">
             <div style={titlestylecolor} className="flex h-12 w-full rounded-t-lg ">
                 <div className="flex flex-row ">
                     <div className="w-19 h-fit ml-7 flex">
                         <img
                             src={Meetinglogo}
-                            alt="MeetingLogo"
+                            alt="meeting"
                             className="w-6 h-fit pt-3"
                         />
-                        <h1 className="ml-5 flex pt-3  font-semibold text-[18px] text-gray-800">
+                        <h1 className="ml-5 flex pt-3 font-semibold text-[18px] text-gray-800">
                             New Meeting
                         </h1>
                     </div>
@@ -86,7 +86,7 @@ function AddNewMeeting({onClose}) {
             </div>
             <div className="flex rounded-b-lg w-full bg-white">
                 <form className="flex w-full">
-                    <div className="flex flex-col w-full pt-4 pl-16 pr-6 pb-14">
+                    <div className="flex flex-col w-full pt-4 px-6 pb-10">
                         <div className="p-3">
                             <TextField
                                 className="w-full"
@@ -133,7 +133,7 @@ function AddNewMeeting({onClose}) {
                                 onChange={(e) => setLokasiMeeting(e.target.value)}
                             />
                         </div>
-                        <div className="mt-7 mr-5">
+                        <div className="mt-4 mr-4">
                         {showErrorPopup && (<div className="error-popup">
                                 <p className="text-red-600"> !! Please fill in all required fields. !! </p>
                             </div>)}

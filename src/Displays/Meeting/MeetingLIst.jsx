@@ -8,6 +8,7 @@ import meetingIcon from "../../assets/people.png";
 
 function MeetingList(){
     const [currentPage, setCurrentPage] = useState(1);
+    const [isAddMeetingModalOpen, setIsAddMeetingModalOpen] = useState(false);
     const itemsPerPage = 5;
 
     const handleClickNext = () => {
@@ -28,8 +29,7 @@ function MeetingList(){
             month: 'long',
             day: 'numeric',
         };
-        const formattedDate = new Date(dateString).toLocaleDateString('id-ID', options);
-        return formattedDate;
+        return new Date(dateString).toLocaleDateString('id-ID', options);
     };
 
     const formatTime = (dateString) => {
@@ -37,11 +37,11 @@ function MeetingList(){
             hour: 'numeric',
             minute: 'numeric',
         };
-        const formattedTime = new Date(dateString).toLocaleTimeString('id-ID', options);
-        return formattedTime;
+        return new Date(dateString).toLocaleTimeString('id-ID', options);
     };
 
     const [meetingData, setMeetingData] = useState([]);
+
     const bgBigCard = {
         backgroundColor: "#ECEAC6", // Yellow
     };
@@ -53,7 +53,6 @@ function MeetingList(){
     const bgList = {
         backgroundColor: "#FFFFFF", // Light Gray
     };
-
 
     const boxShadow = {
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Subtle shadow for depth
@@ -92,9 +91,7 @@ function MeetingList(){
 
         // Call the combined function
         fetchData();
-    }, []); // Empty dependency array means this effect runs once when the component mounts
-
-    const [isAddMeetingModalOpen, setIsAddMeetingModalOpen] = useState(false);
+    }, [authToken, isAddMeetingModalOpen]); // Empty dependency array means this effect runs once when the component mounts
 
     const openAddMeetingModal = () => {
         setIsAddMeetingModalOpen(true);
@@ -104,20 +101,15 @@ function MeetingList(){
         setIsAddMeetingModalOpen(false);
     };
 
-
     return(
         <>
             <Header/>
             <Menu/>
             <div className="flex flex-col h-full w-full justify-center rounded-b-5xl select-none"
                  style={{...bgBigCard, ...boxShadow}}>
-
-
-                <div className="flex flex-col w-9/10 h-full mx-20">
-
-                    <div className="flex flex-row w-full px-2 py-4 rounded-t-3xl mt-20"
-                         style={headerList}
-                    >
+                <div className="flex flex-col w-9/10 h-full mx-2 md:mx-16">
+                    <div className="flex flex-row w-full px-2 py-4 rounded-t-3xl mt-16"
+                         style={headerList}>
                         <div className="flex mx-3">
                             <img
                                 src={meetingIcon}
@@ -133,7 +125,7 @@ function MeetingList(){
                          style={{...bgList, ...boxShadow}}
                     >
                         <div className="flex w-full justify-start ">
-                            <div className="bg-blue-500 p-2 rounded-full my-4 mx-10 text-white">
+                            <div className="bg-blue-500 p-2 rounded-full my-4 text-white">
                                 <button onClick={openAddMeetingModal}>Add New Meeting</button>
                             </div>
                         </div>
@@ -146,16 +138,16 @@ function MeetingList(){
                             <table className="table-auto w-full bg-white border-collapse border border-gray-300">
                                 <thead>
                                 <tr className="bg-blue-200">
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
+                                    <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
                                         Topic
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
+                                    <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
                                         Location
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
+                                    <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
                                         Time
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
+                                    <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
                                         Creator
                                     </th>
                                 </tr>
@@ -163,13 +155,13 @@ function MeetingList(){
                                 <tbody className="divide-y divide-gray-300">
                                 {meetingData.slice(startIndex, endIndex).map((meeting, index) => (
                                     <tr id={`meeting-list-${index}`} className="bg-blue-100" key={index}>
-                                        <td className="px-6 py-4 whitespace-nowrap">{meeting.topic}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap">{meeting.location}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap">
+                                        <td className="px-2 md:px-6 py-4 whitespace-nowrap">{meeting.topic}</td>
+                                        <td className="px-2 md:px-6 py-4 whitespace-nowrap">{meeting.location}</td>
+                                        <td className="px-2 md:px-6 py-4 whitespace-nowrap">
                                             {formatDate(meeting.timeStart)}, {formatTime(meeting.timeStart)} - {formatTime(meeting.timeEnd)} WITA
                                         </td>
                                         {meeting.creator && (
-                                            <td className="px-6 py-4 whitespace-nowrap">{meeting.creator.email}</td>
+                                            <td className="px-2 md:px-6 py-4 whitespace-nowrap">{meeting.creator.email}</td>
                                         )}
                                     </tr>
                                 ))}

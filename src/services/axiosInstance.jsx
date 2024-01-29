@@ -1,6 +1,8 @@
 import axios from 'axios';
+import {useAuth} from "./authContext.jsx";
 
 const createAxiosInstance = (isAuthenticated) => {
+
     const instance = axios.create({
         baseURL: 'http://localhost:8888/api/v1',
     });
@@ -20,7 +22,8 @@ const createAxiosInstance = (isAuthenticated) => {
         (response) => response,
         (error) => {
             if (error.response && error.response.status === 403) {
-                localStorage.removeItem('token');
+                const {logout} = useAuth();
+                logout();
             }
             return Promise.reject(error);
         }
