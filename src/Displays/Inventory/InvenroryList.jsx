@@ -8,7 +8,7 @@ import InventoryIcon from "../../assets/inventory-logo.png";
 function InventoryList(){
 
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5;
+    const itemsPerPage = 10;
 
     const handleClickNext = () => {
         setCurrentPage(prevPage => prevPage + 1);
@@ -101,7 +101,7 @@ function InventoryList(){
 
                 <div className="flex flex-col w-9/10 h-full mx-20">
 
-                    <div className="flex flex-row w-full px-2 py-4 rounded-t-3xl mt-20"
+                    <div className="flex flex-row w-full px-2 py-4 rounded-t-3xl mt-6"
                          style={headerList}
                     >
                         <div className="flex mx-3">
@@ -150,27 +150,30 @@ function InventoryList(){
                                 ))}
                                 </tbody>
                             </table>
-                            <div
-                                className="mb-2">Showing {startIndex + 1} - {endIndex} of {inventoryData.length} inventories
-                            </div>
+                            <div className="flex flex-row justify-between ">
 
-                            <div className="flex justify-between mt-4">
-                                <button
-                                    onClick={handleClickPrev}
-                                    disabled={currentPage === 1}
-                                    style={bgBlue}
-                                    className=" text-white font-bold py-2 px-4 rounded"
-                                >
-                                    Previous
-                                </button>
-                                <button
-                                    onClick={handleClickNext}
-                                    disabled={endIndex >= inventoryData.length}
-                                    style={bgBlue}
-                                    className=" text-white font-bold py-2 px-4 rounded"
-                                >
-                                    Next
-                                </button>
+                                <div
+                                    className="mb-2 flex items-center">Showing {startIndex + 1} - {endIndex} of {inventoryData.length} projects
+                                </div>
+
+                                <div className="flex justify-end mt-4">
+                                    <button
+                                        onClick={handleClickPrev}
+                                        disabled={currentPage === 1}
+                                        style={bgBlue}
+                                        className=" text-white font-bold py-2 px-4 rounded mx-3"
+                                    >
+                                        Previous
+                                    </button>
+                                    <button
+                                        onClick={handleClickNext}
+                                        disabled={endIndex >= inventoryData.length}
+                                        style={bgBlue}
+                                        className=" text-white font-bold py-2 px-4 rounded"
+                                    >
+                                        Next
+                                    </button>
+                                </div>
                             </div>
                         </div>
 

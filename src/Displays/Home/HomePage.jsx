@@ -223,7 +223,7 @@ function HomePage() {
                                         </div>
                                         <div>
                                             {meeting.creator && (
-                                                <p className="text-sm">{meeting.creator.email}</p>
+                                                <p className="text-sm">{meeting.creator.name}</p>
                                             )}
                                         </div>
                                     </div>
@@ -279,18 +279,11 @@ function HomePage() {
                                         {project.title}
                                     </div>
                                     <div className="flex w-full flex-row py-1">
-                                        <div className="flex w-5 mr-3">
-                                            <img src={userIcon} alt="" className="mr-3"/>
-                                        </div>
-                                        <div>
-                                            <p className="text-sm">
 
-                                            </p>
-                                        </div>
                                     </div>
                                     <div className="flex w-full flex-row py-1">
                                         <div className="flex w-5 mr-3">
-                                            <img src={timeIcon} alt="" className="mr-3"/>
+                                            <img src={timeIcon} alt="" className="mr-3 w-5 h-5"/>
                                         </div>
                                         <div>
                                             <p className="text-sm">{formatDate(projectData[index].timeStart)}, {formatTime(projectData[index].timeStart)} - {formatDate(projectData[index].timeEnd)} {formatTime(projectData[0].timeEnd)} WITA</p>

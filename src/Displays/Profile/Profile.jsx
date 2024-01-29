@@ -26,7 +26,7 @@ function Profile(){
         <>
             <Header />
             <Menu/>
-            <div className="flex flex-col h-full w-full justify-center rounded-b-5xl select-none p-10 mb-16"
+            <div className="flex flex-col h-full w-full justify-center rounded-b-5xl select-none p-2 mb-16"
                  style={{...bgBigCard, ...boxShadow, ...textColor}}>
                 <div className="container mx-auto p-4 ">
                     <h1 className="text-2xl font-bold mb-4">Profile</h1>
