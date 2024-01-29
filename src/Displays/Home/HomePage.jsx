@@ -88,7 +88,6 @@ function HomePage() {
                 if (meetingsResponse.ok) {
                     const meetingsData = await meetingsResponse.json();
                     meetingsData.sort((a, b) => new Date(a.timeStart) - new Date(b.timeStart));
-                    console.log('Meetings data:', meetingsData);
                     setMeetingData(meetingsData);
                 } else {
                     if (meetingsResponse.status === 403) {
@@ -113,7 +112,6 @@ function HomePage() {
                         return;
                     }
                     projectsData.sort((a, b) => new Date(a.timeStart) - new Date(b.timeStart));
-                    console.log('Projects data:', projectsData);
                     setProjectData(projectsData);
 
                 } else {
