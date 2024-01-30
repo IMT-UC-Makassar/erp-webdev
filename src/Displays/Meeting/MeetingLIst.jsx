@@ -9,7 +9,7 @@ import meetingIcon from "../../assets/people.png";
 function MeetingList(){
     const [currentPage, setCurrentPage] = useState(1);
     const [isAddMeetingModalOpen, setIsAddMeetingModalOpen] = useState(false);
-    const itemsPerPage = 5;
+    const itemsPerPage = 10;
 
     const handleClickNext = () => {
         setCurrentPage(prevPage => prevPage + 1);
@@ -19,6 +19,10 @@ function MeetingList(){
         setCurrentPage(prevPage => Math.max(prevPage - 1, 1));
     };
 
+    const textColor = {
+        color: "#121722"
+
+    }
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = currentPage * itemsPerPage;
 
@@ -47,12 +51,16 @@ function MeetingList(){
     };
 
     const headerList = {
-        backgroundColor: "#F2C22A", // Orange
+        backgroundColor: "#ffce32", // Orange
     };
 
     const bgList = {
         backgroundColor: "#FFFFFF", // Light Gray
     };
+
+    const bgBlue ={
+        backgroundColor: "#1d63ff"
+    }
 
     const boxShadow = {
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Subtle shadow for depth
@@ -75,7 +83,6 @@ function MeetingList(){
                 if (meetingsResponse.ok) {
                     const meetingsData = await meetingsResponse.json();
                     meetingsData.sort((a, b) => new Date(a.timeStart) - new Date(b.timeStart));
-                    console.log('Meetings data:', meetingsData);
                     setMeetingData(meetingsData);
                 } else {
                     if (meetingsResponse.status === 403) {
@@ -105,8 +112,8 @@ function MeetingList(){
         <>
             <Header/>
             <Menu/>
-            <div className="flex flex-col h-full w-full justify-center rounded-b-5xl select-none"
-                 style={{...bgBigCard, ...boxShadow}}>
+            <div className="flex flex-col min-h-screen w-full justify-center rounded-b-5xl select-none"
+                 style={{...bgBigCard, ...boxShadow, ...textColor}}>
                 <div className="flex flex-col w-9/10 h-full mx-2 md:mx-16">
                     <div className="flex flex-row w-full px-2 py-4 rounded-t-3xl mt-16"
                          style={headerList}>
@@ -125,7 +132,8 @@ function MeetingList(){
                          style={{...bgList, ...boxShadow}}
                     >
                         <div className="flex w-full justify-start ">
-                            <div className="bg-blue-500 p-2 rounded-full my-4 text-white">
+                            <div className=" p-2 rounded-full my-4 text-white"
+                            style={bgBlue}>
                                 <button onClick={openAddMeetingModal}>Add New Meeting</button>
                             </div>
                         </div>
@@ -134,60 +142,73 @@ function MeetingList(){
                                 <AddNewMeeting onClose={closeAddMeetingModal}/>
                             </div>
                         )}
-                        <div className="overflow-x-auto mb-10">
-                            <table className="table-auto w-full bg-white border-collapse border border-gray-300">
-                                <thead>
-                                <tr className="bg-blue-200">
-                                    <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
-                                        Topic
-                                    </th>
-                                    <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
-                                        Location
-                                    </th>
-                                    <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
-                                        Time
-                                    </th>
-                                    <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
-                                        Creator
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody className="divide-y divide-gray-300">
-                                {meetingData.slice(startIndex, endIndex).map((meeting, index) => (
-                                    <tr id={`meeting-list-${index}`} className="bg-blue-100" key={index}>
-                                        <td className="px-2 md:px-6 py-4 whitespace-nowrap">{meeting.topic}</td>
-                                        <td className="px-2 md:px-6 py-4 whitespace-nowrap">{meeting.location}</td>
-                                        <td className="px-2 md:px-6 py-4 whitespace-nowrap">
-                                            {formatDate(meeting.timeStart)}, {formatTime(meeting.timeStart)} - {formatTime(meeting.timeEnd)} WITA
-                                        </td>
-                                        {meeting.creator && (
-                                            <td className="px-2 md:px-6 py-4 whitespace-nowrap">{meeting.creator.email}</td>
-                                        )}
+                        {meetingData.length === 0 ? (
+                            <div className=" flex justify-center items-center p-40 overflow-x-auto mb-10">
+                                <div className="flex justify-center items-center h-full">
+                                    <p className="text-gray-500 text-lg">Meeting is empty. Please add new Meeting.</p>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="overflow-x-auto mb-10">
+                                <table className="table-auto w-full bg-white border-collapse border border-gray-300">
+                                    <thead>
+                                    <tr className="bg-blue-200">
+                                        <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
+                                            Topic
+                                        </th>
+                                        <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
+                                            Location
+                                        </th>
+                                        <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
+                                            Time
+                                        </th>
+                                        <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
+                                            Creator
+                                        </th>
                                     </tr>
-                                ))}
-                                </tbody>
-                            </table>
-                            <div
-                                className="mb-2">Showing {startIndex + 1} - {endIndex} of {meetingData.length} meetings
-                            </div>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-300">
+                                    {meetingData.slice(startIndex, endIndex).map((meeting, index) => (
+                                        <tr id={`meeting-list-${index}`} className="bg-blue-100" key={index}>
+                                            <td className="px-2 md:px-6 py-4 whitespace-nowrap">{meeting.topic}</td>
+                                            <td className="px-2 md:px-6 py-4 whitespace-nowrap">{meeting.location}</td>
+                                            <td className="px-2 md:px-6 py-4 whitespace-nowrap">
+                                                {formatDate(meeting.timeStart)}, {formatTime(meeting.timeStart)} - {formatTime(meeting.timeEnd)} WITA
+                                            </td>
+                                            {meeting.creator && (
+                                                <td className="px-2 md:px-6 py-4 whitespace-nowrap">{meeting.creator.name}</td>
+                                            )}
+                                        </tr>
+                                    ))}
+                                    </tbody>
+                                </table>
+                                <div className="flex flex-row justify-between ">
 
-                            <div className="flex justify-between mt-4">
-                                <button
-                                    onClick={handleClickPrev}
-                                    disabled={currentPage === 1}
-                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                >
-                                    Previous
-                                </button>
-                                <button
-                                    onClick={handleClickNext}
-                                    disabled={endIndex >= meetingData.length}
-                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                >
-                                    Next
-                                </button>
+                                    <div
+                                        className="mb-2 flex items-center">Showing {startIndex + 1} - {endIndex} of {meetingData.length} projects
+                                    </div>
+
+                                    <div className="flex justify-end mt-4">
+                                        <button
+                                            onClick={handleClickPrev}
+                                            disabled={currentPage === 1}
+                                            style={bgBlue}
+                                            className=" text-white font-bold py-2 px-4 rounded mx-3"
+                                        >
+                                            Previous
+                                        </button>
+                                        <button
+                                            onClick={handleClickNext}
+                                            disabled={endIndex >= meetingData.length}
+                                            style={bgBlue}
+                                            className=" text-white font-bold py-2 px-4 rounded"
+                                        >
+                                            Next
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        )}
 
                     </div>
 

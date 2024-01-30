@@ -11,18 +11,13 @@ function AddNewInventory({onClose}) {
     const [namaInventory, setNamaInventory] = useState("");
     const [jumlahInventory, setJumlahInventory] = useState("");
 
-    const titlestylecolor = {
-        backgroundColor: "#F2C22A",
-    };
-    const bgForm = {
-        backgroundColor: "#C9C9C9",
-    };
-    const bgInput = {
-        backgroundColor: "#F6F4F4",
-    };
-    const bgButtonAdd = {
-        backgroundColor: "#009FBC",
-    };
+  const titlestylecolor = {
+    backgroundColor: "#ffce32",
+  };
+
+  const bgButtonAdd = {
+    backgroundColor: "#1d63ff",
+  };
 
     const formData = {
         nama: namaInventory, jumlah: jumlahInventory,

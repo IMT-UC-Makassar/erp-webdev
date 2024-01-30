@@ -1,9 +1,16 @@
 import logo from '/src/assets/logo-CE.jpg'
 import {Link, useNavigate} from "react-router-dom";
-import logoutIcon from "../../assets/logout-icon.png"
 import {useAuth} from "../../services/authContext.jsx";
+
 import LogoutConfirmation from "../LogoutConfirmation/logoutConfirmation.jsx";
 import {useState} from "react";
+import profile from "../../assets/profile.png";
+import { Menu, Transition } from '@headlessui/react'
+import {Fragment} from "react";
+
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+}
 
 const bgHeader = {
     backgroundColor: "#F0F0F0",
@@ -53,19 +60,69 @@ const Header = () => {
                 </Link>
             </div>
             <div className="flex w-1/2 justify-end">
-                <div className="flex items-center m-5">
-                    <img
-                        src={logoutIcon}
-                        alt=""
-                        className="w-6 h-6 cursor-pointer" // Add cursor-pointer to indicate it's clickable
-                        onClick={openLogoutConfirmation}
-                    />
-                    {isLogoutConfirmationOpen && (
-                        <div className="fixed top-0 left-0 w-full h-full" onClick={closeLogoutConfirmation}></div>
-                    )}
+                <div className="items-center flex">
 
-                    {isLogoutConfirmationOpen && <LogoutConfirmation onConfirm={handleLogout} onCancel={closeLogoutConfirmation} />}
+                    <Menu as="div" className="relative inline-block text-left">
 
+                        <div>
+
+                            <Menu.Button
+                                className="inline-flex w-full justify-center gap-x-1.5 rounded-md  px-3 py-2 text-md  items-center  text-gray-900  ring-inset ring-gray-300">
+                                <strong>{localStorage.getItem('user.name')}</strong>
+                                <img src={profile} alt="" className="w-10 border-2 border-blue-500 rounded-full"/>
+                            </Menu.Button>
+                        </div>
+
+                        <Transition
+                            as={Fragment}
+                            enter="transition ease-out duration-100"
+                            enterFrom="transform opacity-0 scale-95"
+                            enterTo="transform opacity-100 scale-100"
+                            leave="transition ease-in duration-75"
+                            leaveFrom="transform opacity-100 scale-100"
+                            leaveTo="transform opacity-0 scale-95"
+                        >
+                            <Menu.Items
+                                className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                <div className="py-1">
+                                    <Menu.Item>
+                                        {({active}) => (
+                                            <Link to="/profile">
+                                            <a
+                                                className={classNames(
+                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                    'block px-4 py-2 text-sm'
+                                                )}
+                                            >
+                                                Profile
+                                            </a>
+                                            </Link>
+                                        )}
+                                    </Menu.Item>
+
+                                    <Menu.Item>
+                                        {({active}) => (
+                                            <div
+                                                className={classNames(
+                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                    'block px-4 py-2 text-sm'
+                                                )}
+                                                onClick={openLogoutConfirmation}
+                                            >
+                                                Logout
+                                            </div>
+                                        )}
+                                    </Menu.Item>
+                                </div>
+                            </Menu.Items>
+                        </Transition>
+                    </Menu>
+                                    {isLogoutConfirmationOpen && (
+                                            <div className="fixed top-0 left-0 w-full h-full" onClick={closeLogoutConfirmation}>
+
+                                            <LogoutConfirmation onConfirm={handleLogout} onCancel={closeLogoutConfirmation} />
+                                            </div>
+                                    )}
                 </div>
             </div>
             <div></div>
