@@ -5,7 +5,8 @@ import Menu from "../../Components/HamburgerMenu/menu.jsx"
 import AddNewInventory from "./AddNewInventory.jsx";
 import {useEffect, useState} from "react";
 import InventoryIcon from "../../assets/inventory-logo.png";
-function InventoryList(){
+
+function InventoryList() {
     const [currentPage, setCurrentPage] = useState(1);
     const [isAddInventoryModalOpen, setIsAddInventoryModalOpen] = useState(false);
     const itemsPerPage = 10;
@@ -34,7 +35,7 @@ function InventoryList(){
         backgroundColor: "#FFFFFF", // Light Gray
     };
 
-    const bgBlue ={
+    const bgBlue = {
         backgroundColor: "#1d63ff"
     }
 
@@ -87,8 +88,7 @@ function InventoryList(){
         setIsAddInventoryModalOpen(false);
     };
 
-    return(
-        <>
+    return (<>
             <Header/>
             <Menu/>
             <div className="flex flex-col min-h-screen w-full justify-center rounded-b-5xl select-none"
@@ -108,72 +108,23 @@ function InventoryList(){
                         </div>
                     </div>
                     <div className="flex flex-col h-full px-7 rounded-b-3xl mb-20"
-                         style={{ ...bgList, ...boxShadow }}>
+                         style={{...bgList, ...boxShadow}}>
                         <div className="flex w-full justify-start ">
                             <div style={bgBlue}
                                  className=" p-2 rounded-full my-4 text-white">
                                 <button onClick={openAddInventoryModal}>Add New Inventory</button>
                             </div>
                         </div>
-                        {isAddInventoryModalOpen && (
-                            <div className="modal-container">
-                                <AddNewInventory onClose={closeAddInventoryModal}/>
-                            </div>
-                        )}
+                        {isAddInventoryModalOpen && (<div className="modal-container">
+                            <AddNewInventory onClose={closeAddInventoryModal}/>
+                        </div>)}
                         {inventoryData.length === 0 ? (
                             <div className=" flex justify-center items-center p-40 overflow-x-auto mb-10">
                                 <div className="flex justify-center items-center h-full">
-                                    <p className="text-gray-500 text-lg">Inventory is empty. Please add new inventory.</p>
+                                    <p className="text-gray-500 text-lg">Inventory is empty. Please add new
+                                        inventory.</p>
                                 </div>
-                            </div>
-                        ) : (
-                            <div className="overflow-x-auto mb-10">
-                                <table className="table-auto w-full bg-white border-collapse border border-gray-300">
-                                    <thead>
-                                    <tr className="bg-blue-200">
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
-                                            Nama Barang
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
-                                            Jumlah Barang
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-gray-300">
-                                    {inventoryData.slice(startIndex, endIndex).map((inventory, index) => (
-                                        <tr id={`inventory-list-${index}`} className="bg-blue-100" key={index}>
-                                            <td className="px-6 py-4 whitespace-nowrap">{inventory.nama}</td>
-                                            <td className="px-6 py-4 whitespace-nowrap">{inventory.jumlah}</td>
-                                        </tr>
-                                    ))}
-                                    </tbody>
-                                </table>
-                                <div className="flex flex-row justify-between ">
-                                    <div
-                                        className="mb-2 flex items-center">Showing {startIndex + 1} - {endIndex} of {inventoryData.length} projects
-                                    </div>
-                                    <div className="flex justify-end mt-4">
-                                        <button
-                                            onClick={handleClickPrev}
-                                            disabled={currentPage === 1}
-                                            style={bgBlue}
-                                            className=" text-white font-bold py-2 px-4 rounded mx-3"
-                                        >
-                                            Previous
-                                        </button>
-                                        <button
-                                            onClick={handleClickNext}
-                                            disabled={endIndex >= inventoryData.length}
-                                            style={bgBlue}
-                                            className=" text-white font-bold py-2 px-4 rounded"
-                                        >
-                                            Next
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                        <div className="overflow-x-auto mb-10">
+                            </div>) : (<div className="overflow-x-auto mb-10">
                             <table className="table-auto w-full bg-white border-collapse border border-gray-300">
                                 <thead>
                                 <tr className="bg-blue-200">
@@ -190,37 +141,38 @@ function InventoryList(){
                                     <tr id={`inventory-list-${index}`} className="bg-blue-100" key={index}>
                                         <td className="px-2 md:px-6 py-4 whitespace-nowrap">{inventory.nama}</td>
                                         <td className="px-2 md:px-6 py-4 whitespace-nowrap">{inventory.jumlah}</td>
-                                    </tr>
-                                ))}
+                                    </tr>))}
                                 </tbody>
                             </table>
-                            <div
-                                className="mb-2">Showing {startIndex + 1} - {endIndex} of {inventoryData.length} inventories
+                            <div className="flex flex-row justify-between ">
+                                <div
+                                    className="mb-2 flex items-center">Showing {startIndex + 1} - {endIndex} of {inventoryData.length} projects
+                                </div>
+                                <div className="flex justify-end mt-4">
+                                    <button
+                                        onClick={handleClickPrev}
+                                        disabled={currentPage === 1}
+                                        style={bgBlue}
+                                        className=" text-white font-bold py-2 px-4 rounded mx-3"
+                                    >
+                                        Previous
+                                    </button>
+                                    <button
+                                        onClick={handleClickNext}
+                                        disabled={endIndex >= inventoryData.length}
+                                        style={bgBlue}
+                                        className=" text-white font-bold py-2 px-4 rounded"
+                                    >
+                                        Next
+                                    </button>
+                                </div>
                             </div>
-
-                            <div className="flex justify-between mt-4">
-                                <button
-                                    onClick={handleClickPrev}
-                                    disabled={currentPage === 1}
-                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                >
-                                    Previous
-                                </button>
-                                <button
-                                    onClick={handleClickNext}
-                                    disabled={endIndex >= inventoryData.length}
-                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                >
-                                    Next
-                                </button>
-                            </div>
-                        </div>
+                        </div>)}
                     </div>
                 </div>
             </div>
             <Footer/>
-        </>
-    )
+        </>)
 }
 
 export default InventoryList;

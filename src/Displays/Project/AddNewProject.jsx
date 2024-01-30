@@ -16,26 +16,19 @@ function AddNewProject({onClose}) {
     const [endTime, setEndTime] = useState(dayjs());
     const [anggotaProject, setAnggotaProject] = useState("");
 
-  const titlestylecolor = {
-    backgroundColor: "#ffce32",
-  };
-  const bgInput = {
-    backgroundColor: "#F6F4F4",
-  };
-  const bgButtonAdd = {
-    backgroundColor: "#1d63ff",
-  };
+    const titlestylecolor = {
+        backgroundColor: "#ffce32",
+    };
+    const bgInput = {
+        backgroundColor: "#F6F4F4",
+    };
+    const bgButtonAdd = {
+        backgroundColor: "#1d63ff",
+    };
+
     const statusOptions = [{value: 'onProgress', key: 'On Progress'}, {value: 'done', key: 'Done'}, {
         value: 'cancelled', key: 'Cancelled'
     }, {value: 'onHold', key: 'On Hold'},];
-
-    const titlestylecolor = {
-        backgroundColor: "#F2C22A",
-    };
-
-    const bgButtonAdd = {
-        backgroundColor: "#009FBC",
-    };
 
     const userData = {
         email: localStorage.getItem("user.email"),
