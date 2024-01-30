@@ -4,7 +4,6 @@ import Footer from "../../Components/Footer/footer.jsx";
 import Menu from "../../Components/HamburgerMenu/menu.jsx"
 import meetingIcon from "../../assets/people.png"
 import nextMeetingIcon from "../../assets/nextMeeting-logo.png"
-import profile from "../../assets/profile.png"
 import nextProjectIcon from "../../assets/nextProject-logo.png"
 import projectIcon from "../../assets/verified.png"
 import timeIcon from "../../assets/time.png"
@@ -17,15 +16,15 @@ function HomePage() {
     };
 
     const bgMeetingCard = {
-        backgroundColor: "#009FBC", // Blue Gray
+        backgroundColor: "#1d63ff", // Blue Gray
     };
 
     const bgProjectCard = {
-        backgroundColor: "#DDAD75", // Blue Gray
+        backgroundColor: "#ffce32", // Blue Gray
     };
 
     const headerList = {
-        backgroundColor: "#F2C22A", // Orange
+        backgroundColor: "#ffce32", // Orange
     };
 
     const bgList = {
@@ -33,12 +32,17 @@ function HomePage() {
     };
 
     const bgStatus = {
-        backgroundColor: "#2196F3", // Blue
+        backgroundColor: "#1d63ff", // Blue
     };
 
     const boxShadow = {
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Subtle shadow for depth
     };
+
+    const textColor = {
+        color: "#121722"
+
+    }
 
 
     const [meetingData, setMeetingData] = useState([]);
@@ -83,7 +87,6 @@ function HomePage() {
                 if (meetingsResponse.ok) {
                     const meetingsData = await meetingsResponse.json();
                     meetingsData.sort((a, b) => new Date(a.timeStart) - new Date(b.timeStart));
-                    console.log('Meetings data:', meetingsData);
                     setMeetingData(meetingsData);
                 } else {
                     if (meetingsResponse.status === 403) {
@@ -108,7 +111,6 @@ function HomePage() {
                         return;
                     }
                     projectsData.sort((a, b) => new Date(a.timeStart) - new Date(b.timeStart));
-                    console.log('Projects data:', projectsData);
                     setProjectData(projectsData);
 
                 } else {
@@ -135,25 +137,30 @@ function HomePage() {
             <Menu/>
             <div className="flex flex-col h-full w-full justify-center rounded-b-5xl select-none"
                  style={{...bgBigCard,...boxShadow}}>
-                <div className="flex flex-col justify-center items-center mb-16">
 
-                    <div className="flex justify-center border-2 w-1/12 h-full rounded-full mt-20 border-blue-500">
-                        <Link to="/profile">
-
-                        <img src={profile} alt=""/>
-                        </Link>
-                    </div>
-                    <div className="flex flex-col justify-center">
-                        <div className="flex justify-center mt-6">
-                            <p className="text-blue-600 text-3xl mb-4">Welcome To <span className="text-yellow-500">CE<span className="text-black">,</span></span></p>
-                        </div>
-                            <div className="flex justify-center">
-                                <strong className="text-3xl">{localStorage.getItem('user.name')}</strong>
+                <div className="flex flex-row justify-evenly my-20">
+                    {meetingData.length === 0 ? (
+                        <div className="w-1/3 h-full flex flex-col rounded-xl text-white"
+                             style={{...bgMeetingCard, ...boxShadow}}
+                        >
+                            <div className="flex flex-row justify-between border-b-2 m-2 mx-10 border-orange-300 ">
+                                <div className="flex flex-col  text-2xl">
+                                    <p>Next Meeting</p>
+                                    <p>Schedule</p>
+                                </div>
+                                <div className="flex w-14 h-14 ">
+                                    <img src={nextMeetingIcon} alt=""/>
+                                </div>
                             </div>
-                    </div>
-                </div>
-                <div className="flex flex-row justify-evenly ">
-                    <div className="w-1/3 flex flex-col rounded-xl mb-32 text-white"
+
+                            <div className="flex flex-col mx-14 mb-5  py-5 text-xl">
+                                <p>DD/MM/YY</p>
+                                <p> -- : -- WITA</p>
+                            </div>
+
+                        </div>
+                    ) : (
+                    <div className="w-1/3 flex flex-col rounded-xl text-white"
                          style={{...bgMeetingCard,...boxShadow}}
                     >
                         <div className="flex flex-row justify-between border-b-2 m-2 mx-10 border-orange-300">
@@ -172,26 +179,49 @@ function HomePage() {
                             </div>
                         )}
                     </div>
-                    <div className="w-1/3 h-full flex flex-col rounded-xl text-white"
-                         style={{...bgProjectCard,...boxShadow}}
-                    >
-                        <div className="flex flex-row justify-between border-b-2 m-2 mx-10 ">
-                            <div className="flex flex-col  text-2xl">
-                                <p>Next Deadline</p>
-                                <p>Project</p>
+                    )}
+                    {projectData.length === 0 ? (
+                        <div className="w-1/3 h-full flex flex-col rounded-xl text-white"
+                             style={{...bgProjectCard, ...boxShadow, ...textColor}}
+                        >
+                            <div className="flex flex-row justify-between border-b-2 m-2 mx-10 border-blue-500 ">
+                                <div className="flex flex-col  text-2xl">
+                                    <p>Next Deadline</p>
+                                    <p>Project</p>
+                                </div>
+                                <div className="flex w-14 h-14 ">
+                                    <img src={nextProjectIcon} alt=""/>
+                                </div>
                             </div>
-                            <div className="flex w-14 h-14 ">
-                                <img src={nextProjectIcon} alt=""/>
-                            </div>
+
+                                    <div className="flex flex-col mx-14 mb-5  py-5 text-xl">
+                                        <p>DD/MM/YY</p>
+                                        <p> -- : -- WITA</p>
+                                    </div>
+
                         </div>
-                        {projectData.length > 0 &&
-                            (
-                            <div className="flex flex-col mx-14 mb-5  py-5 text-xl">
-                                <p>{formatDate(projectData[0].timeEnd)}</p>
-                                <p>{formatTime(projectData[0].timeEnd)} WITA</p>
+                    ) : (
+                        <div className="w-1/3 h-full flex flex-col rounded-xl text-white"
+                             style={{...bgProjectCard, ...boxShadow, ...textColor}}
+                        >
+                            <div className="flex flex-row justify-between border-b-2 m-2 mx-10 border-blue-500 ">
+                                <div className="flex flex-col  text-2xl">
+                                    <p>Next Deadline</p>
+                                    <p>Project</p>
+                                </div>
+                                <div className="flex w-14 h-14 ">
+                                    <img src={nextProjectIcon} alt=""/>
+                                </div>
                             </div>
+                            {projectData.length > 0 &&
+                                (
+                                    <div className="flex flex-col mx-14 mb-5  py-5 text-xl">
+                                        <p>{formatDate(projectData[0].timeEnd)}</p>
+                                        <p>{formatTime(projectData[0].timeEnd)} WITA</p>
+                                    </div>
+                                )}
+                        </div>
                         )}
-                    </div>
                 </div>
             </div>
 
@@ -207,12 +237,20 @@ function HomePage() {
                                 className="w-6 h-fit"
                             />
                         </div>
-                        <div>
+                        <div style={textColor}>
                             <p>Meeting</p>
                         </div>
                     </div>
+                        {meetingData.length === 0 ? (
+                            <div style={{...bgList,...boxShadow,...textColor}}
+                                className=" flex justify-center items-center p-40 overflow-x-auto mb-10">
+                                <div className="flex justify-center items-center h-full">
+                                    <p className="text-gray-500 text-lg">Meeting is empty. Please add new Meeting.</p>
+                                </div>
+                            </div>
+                        ) : (
                     <div className="flex flex-col h-full px-7 rounded-b-3xl "
-                         style={{...bgList,...boxShadow}}
+                         style={{...bgList,...boxShadow,...textColor}}
                     >
                         {/*meeting dump data*/}
                         {meetingData.slice(0,5).map((meeting, index) => (
@@ -230,7 +268,7 @@ function HomePage() {
                                         </div>
                                         <div>
                                             {meeting.creator && (
-                                                <p className="text-sm">{meeting.creator.email}</p>
+                                                <p className="text-sm">{meeting.creator.name}</p>
                                             )}
                                         </div>
                                     </div>
@@ -249,15 +287,16 @@ function HomePage() {
                                     <p>NEW</p>
                                 </div>
                             </div>
-                    ))}
+                        ))}
                         <div className="flex p-5 justify-center">
                             <Link to="/meetinglist">
                                 <p>See All</p>
                             </Link>
                         </div>
 
-                    </div>
 
+                    </div>
+                        )}
                 </div>
                 <div className="flex flex-col w-1/2 h-full m-20">
                     <div className="flex flex-row w-full bg-orange-300 px-2 py-4 rounded-t-3xl"
@@ -269,12 +308,20 @@ function HomePage() {
                                 className="w-6 h-fit"
                             />
                         </div>
-                        <div>
+                        <div style={textColor}>
                             <p>Project</p>
                         </div>
                     </div>
+                    {projectData.length === 0 ? (
+                        <div style={{...bgList,...boxShadow,...textColor}}
+                             className=" flex justify-center items-center p-40 overflow-x-auto mb-10">
+                            <div className="flex justify-center items-center h-full">
+                                <p className="text-gray-500 text-lg">Project is empty. Please add new Project.</p>
+                            </div>
+                        </div>
+                    ) : (
                     <div className="flex flex-col bg-gray-200 h-full px-7 rounded-b-3xl"
-                         style={{...bgList,...boxShadow}}>
+                         style={{...bgList,...boxShadow,...textColor}}>
                         {/*Project dump data*/}
                         {projectData.slice(0,5).map((project, index) => (
                             <div id={`project-list-home-${index}`}
@@ -286,18 +333,11 @@ function HomePage() {
                                         {project.title}
                                     </div>
                                     <div className="flex w-full flex-row py-1">
-                                        <div className="flex w-5 mr-3">
-                                            <img src={userIcon} alt="" className="mr-3"/>
-                                        </div>
-                                        <div>
-                                            <p className="text-sm">
 
-                                            </p>
-                                        </div>
                                     </div>
                                     <div className="flex w-full flex-row py-1">
                                         <div className="flex w-5 mr-3">
-                                            <img src={timeIcon} alt="" className="mr-3"/>
+                                            <img src={timeIcon} alt="" className="mr-3 w-5 h-5"/>
                                         </div>
                                         <div>
                                             <p className="text-sm">{formatDate(projectData[index].timeStart)}, {formatTime(projectData[index].timeStart)} - {formatDate(projectData[index].timeEnd)} {formatTime(projectData[0].timeEnd)} WITA</p>
@@ -318,7 +358,7 @@ function HomePage() {
                         </div>
 
                     </div>
-
+                        )}
                 </div>
 
 

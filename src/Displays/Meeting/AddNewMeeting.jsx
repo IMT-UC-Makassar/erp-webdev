@@ -16,12 +16,13 @@ function AddNewMeeting({onClose}) {
     const [endTime, setEndTime] = useState(dayjs());
     const [lokasiMeeting, setLokasiMeeting] = useState("");
 
-    const titlestylecolor = {
-        backgroundColor: "#F2C22A",
-    };
-    const bgButtonAdd = {
-        backgroundColor: "#009FBC",
-    };
+  const titlestylecolor = {
+    backgroundColor: "#ffce32",
+  };
+  const bgButtonAdd = {
+    backgroundColor: "#1d63ff",
+  };
+
 
     const userData = {
         email: localStorage.getItem('user.email'),
