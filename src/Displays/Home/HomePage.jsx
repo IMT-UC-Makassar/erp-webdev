@@ -225,8 +225,8 @@ function HomePage() {
                 </div>
             </div>
 
-            <div className="flex md:flex-row md:items-start flex-col items-center w-full gap-10 my-10 h-full md:justify-stretch">
-                <div className="flex flex-col md:w-1/2 w-5/6 h-full md:m-20 m-0">
+            <div className="flex md:flex-row md:items-start flex-col items-center w-full md:px-10 gap-10 my-10 h-full md:justify-stretch">
+                <div className="flex flex-col md:w-1/2 w-5/6 h-full">
                     <div className="flex flex-row w-full px-2 py-4 rounded-t-3xl"
                          style={headerList}
                     >
@@ -262,9 +262,9 @@ function HomePage() {
                                     <div className="text-xl py-1">
                                         {meeting.topic}
                                     </div>
-                                    <div className="flex w-full flex-row py-1">
-                                        <div className="flex w-5 mr-5">
-                                            <img src={userIcon} alt=""/>
+                                    <div className="flex w-full flex-row py-1 gap-5">
+                                        <div className="flex w-5">
+                                            <img src={userIcon} alt="" className="w-5 h-5"/>
                                         </div>
                                         <div>
                                             {meeting.creator && (
@@ -272,12 +272,12 @@ function HomePage() {
                                             )}
                                         </div>
                                     </div>
-                                    <div className="flex w-full flex-row py-1">
-                                        <div className="flex w-5">
-                                            <img src={timeIcon} alt="" className=" w-5 h-5 absolute"/>
+                                    <div className="flex w-full flex-row py-1 gap-5">
+                                        <div className="flex w-5 ">
+                                            <img src={timeIcon} alt="" className=" w-5 h-5"/>
                                         </div>
                                         <div>
-                                            <p className="text-sm min-w-md-1000:ml-3 ml-5">{formatDate(meetingData[index].timeStart)}, {formatTime(meetingData[index].timeStart)} - {formatTime(meetingData[0].timeEnd)} WITA</p>
+                                            <p className="text-sm ">{formatDate(meetingData[index].timeStart)}, {formatTime(meetingData[index].timeStart)} - {formatTime(meetingData[0].timeEnd)} WITA</p>
                                         </div>
                                     </div>
                                 </div>
@@ -298,7 +298,7 @@ function HomePage() {
                     </div>
                         )}
                 </div>
-                <div className="flex flex-col md:w-1/2 max-md:w-5/6 h-full md:m-20 max-md:m-0">
+                <div className="flex flex-col md:w-1/2 w-5/6 h-full">
                     <div className="flex flex-row w-full bg-orange-300 px-2 py-4 rounded-t-3xl"
                          style={headerList}>
                         <div className="flex mx-3">
@@ -336,8 +336,8 @@ function HomePage() {
 
                                     </div>
 
-                                    <div className="flex w-full flex-row py-1">
-                                        <div className="flex w-5 mr-5">
+                                    <div className="flex w-full flex-row py-1 gap-5">
+                                        <div className="flex w-5">
                                             <img src={timeIcon} alt="" className=" w-5 h-5"/>
                                         </div>
                                         <div className="flex ">
