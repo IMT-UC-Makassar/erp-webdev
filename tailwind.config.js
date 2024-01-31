@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      maxWidth:{
+        'md-1000':'1000px',
+      },
       borderRadius:{
         '5xl':'4rem',
       }

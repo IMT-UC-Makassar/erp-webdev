@@ -52,7 +52,7 @@ const Header = () => {
                         <img src={logo} alt="" className="w-9 h-9 rounded-xl" />
                     </Link>
                 </div>
-                <Link to="/home" className="flex">
+                <Link to="/home" className="flex max-md:hidden">
                     <div className="flex flex-col justify-center text-sm ml-4 ">
                         <strong className="text-blue-600">COORPORATE</strong>
                         <strong className="text-orange-400">ENTREPRENEURSHIP</strong>
