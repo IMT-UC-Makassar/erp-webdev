@@ -135,7 +135,7 @@ function HomePage() {
         <>
             <Header />
             <Menu/>
-            <div className="flex h-full w-full md:justify-center px-10 rounded-b-5xl select-none"
+            <div className="flex h-full w-full md:justify-center px-10 rounded-b-3xl select-none"
                  style={{...bgBigCard,...boxShadow}}>
 
                 <div className="flex flex-col  gap-6 w-full md:flex-row md::justify-evenly justify-start my-20">
@@ -227,7 +227,7 @@ function HomePage() {
 
             <div className="flex md:flex-row md:items-start flex-col items-center w-full md:px-10 gap-10 my-10 h-full md:justify-stretch">
                 <div className="flex flex-col md:w-1/2 w-5/6 h-full">
-                    <div className="flex flex-row w-full px-2 py-4 rounded-t-3xl"
+                    <div className="flex flex-row w-full px-2 py-4 rounded-t-xl"
                          style={headerList}
                     >
                         <div className="flex mx-3">
@@ -299,7 +299,7 @@ function HomePage() {
                         )}
                 </div>
                 <div className="flex flex-col md:w-1/2 w-5/6 h-full">
-                    <div className="flex flex-row w-full bg-orange-300 px-2 py-4 rounded-t-3xl"
+                    <div className="flex flex-row w-full bg-orange-300 px-2 py-4 rounded-t-xl"
                          style={headerList}>
                         <div className="flex mx-3">
                             <img
