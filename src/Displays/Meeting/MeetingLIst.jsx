@@ -112,10 +112,10 @@ function MeetingList(){
         <>
             <Header/>
             <Menu/>
-            <div className="flex flex-col min-h-screen w-full justify-center rounded-b-5xl select-none"
+            <div className="flex flex-col min-h-fit w-full justify-center rounded-b-5xl select-none pb-10 mb-[156px]"
                  style={{...bgBigCard, ...boxShadow, ...textColor}}>
                 <div className="flex flex-col w-9/10 h-full mx-2 md:mx-16">
-                    <div className="flex flex-row w-full px-2 py-4 rounded-t-3xl mt-16"
+                    <div className="flex flex-row w-full px-2 py-4 rounded-t-2xl mt-16"
                          style={headerList}>
                         <div className="flex mx-3">
                             <img
@@ -128,7 +128,7 @@ function MeetingList(){
                             <p >Meeting List</p>
                         </div>
                     </div>
-                    <div className="flex flex-col h-full px-7 rounded-b-3xl mb-20"
+                    <div className="flex flex-col h-full px-7 rounded-b-2xl mb-20"
                          style={{...bgList, ...boxShadow}}
                     >
                         <div className="flex w-full justify-start ">

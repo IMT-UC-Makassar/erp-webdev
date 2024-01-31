@@ -27,11 +27,11 @@ function Profile(){
         <>
             <Header />
             <Menu/>
-            <div className="flex flex-col w-full min-h-screen justify-center rounded-b-5xl select-none p-10 mb-16"
+            <div className="flex flex-col min-h-fit w-full justify-center rounded-b-5xl select-none pb-[163px] mb-[156px] pt-[250px]"
                  style={{...bgBigCard, ...boxShadow, ...textColor}}>
-                <div className="container mx-auto p-4 ">
+                <div className="container w-[35%] mx-auto p-4 ">
                     <h1 className="text-2xl font-bold mb-4">Profile</h1>
-                    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                    <div className="bg-white shadow-xl rounded-2xl px-8 pt-6 pb-8 mb-2">
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2">Name:</label>
                             <p className="text-gray-700 text-lg">{user.name}</p>

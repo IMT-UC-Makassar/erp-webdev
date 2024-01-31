@@ -91,7 +91,7 @@ function InventoryList() {
     return (<>
             <Header/>
             <Menu/>
-            <div className="flex flex-col min-h-screen w-full justify-center rounded-b-5xl select-none"
+            <div className="flex flex-col min-h-fit w-full justify-center rounded-b-5xl select-none pb-10 mb-[156px]"
                  style={{...bgBigCard, ...boxShadow, ...textColor}}>
                 <div className="flex flex-col w-9/10 h-full mx-2 md:mx-16">
                     <div className="flex flex-row w-full px-2 py-4 rounded-t-3xl mt-16"
