@@ -49,7 +49,7 @@ function Login() {
                 </div>
                 <div id="login-box"
                      style={{...headerList,...textColor}}
-                     className="flex flex-col justify-center items-center w-1/4 mt-32 mb-16 h-fit rounded-l relative">
+                     className="flex flex-col justify-center items-center w-full md:w-1/4 md:mt-32 md:mb-16 h-fit rounded-l relative">
                     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                             <img
