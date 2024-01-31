@@ -157,6 +157,9 @@ function MeetingList(){
                                             Topic
                                         </th>
                                         <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
+                                            Purpose
+                                        </th>
+                                        <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
                                             Location
                                         </th>
                                         <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
@@ -171,6 +174,7 @@ function MeetingList(){
                                     {meetingData.slice(startIndex, endIndex).map((meeting, index) => (
                                         <tr id={`meeting-list-${index}`} className="bg-blue-100" key={index}>
                                             <td className="px-2 md:px-6 py-4 whitespace-nowrap">{meeting.topic}</td>
+                                            <td className="px-2 md:px-6 py-4 whitespace-nowrap">{meeting.purpose}</td>
                                             <td className="px-2 md:px-6 py-4 whitespace-nowrap">{meeting.location}</td>
                                             <td className="px-2 md:px-6 py-4 whitespace-nowrap">
                                                 {formatDate(meeting.timeStart)}, {formatTime(meeting.timeStart)} - {formatTime(meeting.timeEnd)} WITA
