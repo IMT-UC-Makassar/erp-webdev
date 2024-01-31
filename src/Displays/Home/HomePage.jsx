@@ -10,6 +10,7 @@ import timeIcon from "../../assets/time.png"
 import userIcon from "../../assets/user.png"
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
+
 function HomePage() {
     const bgBigCard = {
         backgroundColor: "#ECEAC6", // Yellow
@@ -44,14 +45,11 @@ function HomePage() {
 
     }
 
-
     const [meetingData, setMeetingData] = useState([]);
     const [projectData, setProjectData] = useState([]);
 
     // Assume you have the authentication token available
     const authToken = localStorage.getItem('token');
-
-
 
     const formatDate = (dateString) => {
         const options = {
@@ -60,8 +58,7 @@ function HomePage() {
             month: 'long',
             day: 'numeric',
         };
-        const formattedDate = new Date(dateString).toLocaleDateString('id-ID', options);
-        return formattedDate;
+        return new Date(dateString).toLocaleDateString('id-ID', options);
     };
 
     const formatTime = (dateString) => {
@@ -69,8 +66,7 @@ function HomePage() {
             hour: 'numeric',
             minute: 'numeric',
         };
-        const formattedTime = new Date(dateString).toLocaleTimeString('id-ID', options);
-        return formattedTime;
+        return new Date(dateString).toLocaleTimeString('id-ID', options);
     };
 
     useEffect(() => {
@@ -129,13 +125,11 @@ function HomePage() {
         fetchData();
     }, []); // Empty dependency array means this effect runs once when the component mounts
 
-
-
     return(
         <>
             <Header />
             <Menu/>
-            <div className="flex h-full w-full md:justify-center px-10 rounded-b-5xl select-none"
+            <div className="flex h-full w-full md:justify-center px-10 rounded-b-3xl select-none"
                  style={{...bgBigCard,...boxShadow}}>
 
                 <div className="flex flex-col  gap-6 w-full md:flex-row md::justify-evenly justify-start my-20">
@@ -148,7 +142,7 @@ function HomePage() {
                                     <p>Next Meeting</p>
                                     <p>Schedule</p>
                                 </div>
-                                <div className="flex max-w-md-1000:w-16 h-auto w-10 h-10 ">
+                                <div className="flex flex-shrink-0 max-w-md-1000:w-16 h-auto w-10 ">
                                     <img src={nextMeetingIcon} alt=""/>
                                 </div>
                             </div>
@@ -168,7 +162,7 @@ function HomePage() {
                                 <p>Next Meeting</p>
                                 <p>Schedule</p>
                             </div>
-                            <div className="flex  max-w-md-1000:w-16 h-auto w-10">
+                            <div className="flex flex-shrink-0 max-w-md-1000:w-16 h-auto w-10">
                                 <img src={nextMeetingIcon} alt=""/>
                             </div>
                         </div>
@@ -189,7 +183,7 @@ function HomePage() {
                                     <p>Next Deadline</p>
                                     <p>Project</p>
                                 </div>
-                                <div className="flex  max-w-md-1000:w-14 h-14 w-9 h-10">
+                                <div className="flex flex-shrink-0 max-w-md-1000:w-14 h-14 w-9 h-10">
                                     <img src={nextProjectIcon} alt=""/>
                                 </div>
                             </div>
@@ -209,7 +203,7 @@ function HomePage() {
                                     <p>Next Deadline</p>
                                     <p>Project</p>
                                 </div>
-                                <div className="flex max-w-md-1000:w-14  w-9 h-10">
+                                <div className="flex flex-shrink-0 max-w-md-1000:w-14  w-9 h-10">
                                     <img src={nextProjectIcon} alt=""/>
                                 </div>
                             </div>
@@ -227,10 +221,10 @@ function HomePage() {
 
             <div className="flex md:flex-row md:items-start flex-col items-center w-full md:px-10 gap-10 my-10 h-full md:justify-stretch">
                 <div className="flex flex-col md:w-1/2 w-5/6 h-full">
-                    <div className="flex flex-row w-full px-2 py-4 rounded-t-3xl"
+                    <div className="flex flex-row w-full px-2 py-4 rounded-t-xl"
                          style={headerList}
                     >
-                        <div className="flex mx-3">
+                        <div className="flex flex-shrink-0 mx-3">
                             <img
                                 src={meetingIcon}
                                 alt=""
@@ -263,7 +257,7 @@ function HomePage() {
                                         {meeting.topic}
                                     </div>
                                     <div className="flex w-full flex-row py-1 gap-5">
-                                        <div className="flex w-5">
+                                        <div className="flex flex-shrink-0 w-5">
                                             <img src={userIcon} alt="" className="w-5 h-5"/>
                                         </div>
                                         <div>
@@ -273,7 +267,7 @@ function HomePage() {
                                         </div>
                                     </div>
                                     <div className="flex w-full flex-row py-1 gap-5">
-                                        <div className="flex w-5 ">
+                                        <div className="flex flex-shrink-0 w-5">
                                             <img src={timeIcon} alt="" className=" w-5 h-5"/>
                                         </div>
                                         <div>
@@ -299,9 +293,9 @@ function HomePage() {
                         )}
                 </div>
                 <div className="flex flex-col md:w-1/2 w-5/6 h-full">
-                    <div className="flex flex-row w-full bg-orange-300 px-2 py-4 rounded-t-3xl"
+                    <div className="flex flex-row w-full bg-orange-300 px-2 py-4 rounded-t-xl"
                          style={headerList}>
-                        <div className="flex mx-3">
+                        <div className="flex flex-shrink-0 mx-3">
                             <img
                                 src={projectIcon}
                                 alt=""
@@ -337,7 +331,7 @@ function HomePage() {
                                     </div>
 
                                     <div className="flex w-full flex-row py-1 gap-5">
-                                        <div className="flex w-5">
+                                        <div className="flex w-5 flex-shrink-0">
                                             <img src={timeIcon} alt="" className=" w-5 h-5"/>
                                         </div>
                                         <div className="flex ">
